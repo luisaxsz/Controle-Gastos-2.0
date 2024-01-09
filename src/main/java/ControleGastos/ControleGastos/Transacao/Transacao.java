@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 public class Transacao {
@@ -13,7 +15,7 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private TipoTransacao tipo;
-    private Double valor;
+    private BigDecimal valor;
     private String descricao;
 
     public enum TipoTransacao {
