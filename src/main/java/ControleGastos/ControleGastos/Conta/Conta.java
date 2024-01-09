@@ -13,5 +13,6 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    private String sobrenome;
     private Double total;
 }

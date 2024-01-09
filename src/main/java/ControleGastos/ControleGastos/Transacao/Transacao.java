@@ -1,4 +1,4 @@
-package ControleGastos.ControleGastos.Lucros;
+package ControleGastos.ControleGastos.Transacao;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,10 +8,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Lucro {
+public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private TipoTransacao tipo;
     private Double valor;
     private String descricao;
+
+    public enum TipoTransacao {
+        GASTO,
+        LUCRO
+    }
 }
