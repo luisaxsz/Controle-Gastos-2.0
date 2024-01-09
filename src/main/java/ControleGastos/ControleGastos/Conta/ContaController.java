@@ -3,7 +3,6 @@ package ControleGastos.ControleGastos.Conta;
 import ControleGastos.ControleGastos.Transacao.Transacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +16,7 @@ public class ContaController {
         return ResponseEntity.ok(contaService.getContasBd());
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getContasById(@PathVariable("id") Integer id){
         return ResponseEntity.ok(contaService.getContaById(id));
     }

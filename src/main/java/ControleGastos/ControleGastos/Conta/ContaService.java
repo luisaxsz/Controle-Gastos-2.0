@@ -23,10 +23,11 @@ public class ContaService {
     }
 
     public Optional<Conta> getContaById(Integer id) {
-        try{
+        Optional<Conta> conta = contaRepository.findById(id);
+        if (conta.isPresent()){
             return contaRepository.findById(id);
-        }catch (Exception e){
-            throw e;
+        }else {
+            throw new EntityNotFoundException("A conta não foi encontrada");
         }
     }
 
