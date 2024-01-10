@@ -1,6 +1,7 @@
 package ControleGastos.ControleGastos.Transacao;
 
 import ControleGastos.ControleGastos.Conta.Conta;
+import ControleGastos.ControleGastos.Conta.ContaService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class TransacaoService {
     @Autowired
     private TransacaoRepository transacaoRepository;
 
+    @Autowired
+    private ContaService contaService;
+
     public List<Transacao> getTransacoesBd(){
         return transacaoRepository.findAll();
     }
@@ -26,12 +30,14 @@ public class TransacaoService {
         return transacaoRepository.getTransacoesByTipo(tipo);
     }
 
-    public Transacao adicionarTransacao(Transacao transacao){
+    public Transacao adicionarTransacao(Integer id,Transacao transacao){
         Assert.isNull(transacao.getId(), "Transação não processada");
-        return transacaoRepository.save(transacao);
+        Transacao transacaoAdicionada = transacaoRepository.save(transacao);
+        contaService.saveTotal(id,transacao);
+        return transacaoAdicionada;
     }
 
-    public Transacao atualizarTransacao(Transacao transacao, Integer id) {
+    public Transacao atualizarTransacao(Transacao transacao, Integer id, Integer idConta) {
         Optional<Transacao> optionalTransacao = getTransacaoById(id);
         if (optionalTransacao.isPresent()) {
             Transacao db = optionalTransacao.get();
@@ -39,12 +45,13 @@ public class TransacaoService {
             db.setValor(transacao.getValor());
             db.setTipo(transacao.getTipo());
             transacaoRepository.save(db);
+            contaService.saveTotal(idConta,transacao);
             return db;
         }else {
             throw  new EntityNotFoundException("Transação não encontrada");
         }
     }
-    public void delete (Integer id){
+    public void deleteTransacao(Integer id){
         if(getTransacaoById(id).isPresent()){
             transacaoRepository.deleteById(id);
         }else {
