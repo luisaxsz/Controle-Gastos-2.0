@@ -32,7 +32,7 @@ public class ContaController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizarConta(@RequestBody Conta conta, @PathVariable("id") Integer id){
-        return ResponseEntity.ok(contaService.update(conta,id));
+        return ResponseEntity.ok(contaService.atualizarTransacao(conta,id));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id){

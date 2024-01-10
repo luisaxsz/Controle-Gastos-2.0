@@ -32,11 +32,11 @@ public class ContaService {
     }
 
     public Conta criarConta(Conta conta){
-        Assert.isNull(conta.getId(), "Não foi possível inserir carro");
+        Assert.isNull(conta.getId(), "Não foi possivel criar conta");
         return contaRepository.save(conta);
     }
 
-    public Conta update(Conta conta, Integer id) {
+    public Conta atualizarTransacao(Conta conta, Integer id) {
         Optional<Conta> optionalConta = getContaById(id);
         if (optionalConta.isPresent()) {
             Conta db = optionalConta.get();
@@ -47,7 +47,6 @@ public class ContaService {
         }else {
             throw  new EntityNotFoundException("Conta não encontrada");
         }
-
     }
 
     public Conta saveTotal(Integer id, Transacao transacao) {
