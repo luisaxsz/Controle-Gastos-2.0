@@ -6,6 +6,8 @@
 </p>
 
 # Controle-Gastos-2.0
+<img alt="Static Badge" src="https://img.shields.io/badge/SpringBoot-Back-End finalizado-green">
+<img alt="Static Badge" src="https://img.shields.io/badge/Angular-Front-End em andamento-red">
 
 Aplicação permite gerenciar gastos e lucros de uma determinada conta. A aplicação permite criar conta de usuario, atualizar a conta deletar e buscar conta por id.Também é possível adicionar,atualizar,consultar e deletar as transações de GASTO e Lucro.Toda vez que uma transação for adicionada ou modificada ao selecionar uma conta o total dessa conta vai ser modificado de acordo com a conta selecionada e escolhida pelo id.
 
