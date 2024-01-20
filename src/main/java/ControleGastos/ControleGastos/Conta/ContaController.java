@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.login.CredentialException;
+
 @RestController
 @RequestMapping("/contas")
 public class ContaController {
@@ -23,16 +25,20 @@ public class ContaController {
 
     @PostMapping()
     public ResponseEntity<?> postConta(@RequestBody Conta conta){
-        Conta l = contaService.criarConta(conta);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(contaService.criarConta(conta));
     }
+    @PostMapping("/login")
+    public ResponseEntity<?> userAuth(@RequestBody ContaDTO loginAuth) throws CredentialException {
+        return ResponseEntity.ok(contaService.getUserByLogin(loginAuth));
+    }
+
     @PostMapping("/transacao/{id}")
     public ResponseEntity<?> transacao(@PathVariable("id") Integer id, @RequestBody Transacao transacao){
         return ResponseEntity.ok(contaService.saveTotal(id,transacao));
     }
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizarConta(@RequestBody Conta conta, @PathVariable("id") Integer id){
-        return ResponseEntity.ok(contaService.atualizarTransacao(conta,id));
+        return ResponseEntity.ok(contaService.atualizarConta(conta,id));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id){

@@ -1,6 +1,5 @@
 package ControleGastos.ControleGastos.Transacao;
 
-import ControleGastos.ControleGastos.Conta.Conta;
 import ControleGastos.ControleGastos.Conta.ContaService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
