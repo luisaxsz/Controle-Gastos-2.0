@@ -7,13 +7,15 @@ import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { FormsModule } from '@angular/forms';
 import { MensagensErroComponent } from './components/mensagens-erro/mensagens-erro.component';
+import { ConfirmaSenhaDirective } from './directive/confirma-senha.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CadastroComponent,
-    MensagensErroComponent
+    MensagensErroComponent,
+    ConfirmaSenhaDirective
   ],
   imports: [
     BrowserModule,
