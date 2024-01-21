@@ -35,7 +35,7 @@ public class ContaService {
 
     public boolean getUserByLogin(ContaDTO loginAuth) throws CredentialException {
         Optional<Conta> contaOptional = contaRepository.findByEmail(loginAuth.getEmail());
-        if (!isValidEmail(loginAuth.getEmail())) throw new IllegalArgumentException("Email Inválido");
+        //if (!isValidEmail(loginAuth.getEmail())) throw new IllegalArgumentException("Email Inválido");
 
         if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
             return true;
@@ -99,7 +99,7 @@ public class ContaService {
         }
     }
 
-    public static boolean isValidEmail(String email) {
+   /* public static boolean isValidEmail(String email) {
         // Verifica se o endereço de e-mail está vazio
         if (email == null || email.isEmpty()) {
             return false;
@@ -113,6 +113,6 @@ public class ContaService {
         int index = email.lastIndexOf("@");
         String dominio = email.substring(index + 1);
         return dominio.matches("[a-zA-Z0-9-]+\\.[a-zA-Z]+");
-    }
+    }*/
 
 }

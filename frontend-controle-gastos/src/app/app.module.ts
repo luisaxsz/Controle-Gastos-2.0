@@ -10,6 +10,7 @@ import { MensagensErroComponent } from './components/mensagens-erro/mensagens-er
 import { ConfirmaSenhaDirective } from './directive/confirma-senha.directive';
 import { ContaComponent } from './components/Conta/conta/conta.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TelaPrincipalComponent } from './components/tela-principal/tela-principal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     CadastroComponent,
     MensagensErroComponent,
     ConfirmaSenhaDirective,
-    ContaComponent
+    ContaComponent,
+    TelaPrincipalComponent
   ],
   imports: [
     BrowserModule,

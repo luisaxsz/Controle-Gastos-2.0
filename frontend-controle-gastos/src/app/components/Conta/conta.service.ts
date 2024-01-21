@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http"
 import { Conta } from './conta';
+import { ContaDTO } from './contaDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +18,8 @@ export class ContaService {
     return this.http.post<Conta>(this.API,conta);
   }
 
+  fazerLogin(contaDTO: ContaDTO){
+    const url = `${this.API}/login`
+    return this.http.post<ContaDTO>(url,contaDTO)
+  }
 }

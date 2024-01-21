@@ -78,7 +78,7 @@
         ngModel
         #email="ngModel"
         required
-        pattern="^[a-zA-Z1-9_]+( [a-zA-Z0-9_]+)*$"
+        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
       />
       <div *ngIf="(email?.touched && email?.invalid) || email?.dirty">
         <app-mensagens-erro
@@ -98,7 +98,7 @@
         type="password"
         ngModel
         #senha="ngModel"
-        pattern="/^(\+55|55|0)?(\d{2})?(\d{5}-?\d{4})$/"
+        pattern="^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$"
         required
       />
       <div *ngIf="(senha?.touched && senha?.invalid) || senha?.dirty">
