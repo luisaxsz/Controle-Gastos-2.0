@@ -3,8 +3,8 @@
   <form
     class="formulario-cadastro"
     id="formulario-cadastro"
-    #form="ngForm"
-    (submit)="cadastrarConta(form)"
+    #formCadastro="ngForm"
+    (submit)="cadastrarConta(formCadastro)"
   >
     <div>
       <label for="nome" class="label">Nome:</label>
@@ -57,7 +57,7 @@
         ngModel
         #telefone="ngModel"
         required
-        pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"
+        pattern="/^(\+55|55|0)?(\d{2})?(\d{5}-?\d{4})$/"
       />
       <div *ngIf="(telefone?.touched && telefone?.invalid) || telefone?.dirty">
         <app-mensagens-erro
@@ -78,7 +78,7 @@
         ngModel
         #email="ngModel"
         required
-        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+        pattern="^[a-zA-Z1-9_]+( [a-zA-Z0-9_]+)*$"
       />
       <div *ngIf="(email?.touched && email?.invalid) || email?.dirty">
         <app-mensagens-erro
@@ -87,7 +87,7 @@
         ></app-mensagens-erro>
         <app-mensagens-erro
           *ngIf="email?.errors?.['pattern']"
-          mensagem="Email inválido, use padrão (xx) xxxxx-xxxx"
+          mensagem="Email inválido, use o padrão 'exemplo@exemplo.com'"
         ></app-mensagens-erro>
       </div>
     </div>
@@ -98,7 +98,7 @@
         type="password"
         ngModel
         #senha="ngModel"
-        pattern="^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$"
+        pattern="/^(\+55|55|0)?(\d{2})?(\d{5}-?\d{4})$/"
         required
       />
       <div *ngIf="(senha?.touched && senha?.invalid) || senha?.dirty">
@@ -139,4 +139,5 @@
     </div>
     <button type="submit" class="button-form">Cadastrar</button>
   </form>
+  <button (click)="cancelar()" class="button-form">Cacelar</button>
 </section>

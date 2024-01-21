@@ -9,6 +9,7 @@ import javax.security.auth.login.CredentialException;
 
 @RestController
 @RequestMapping("/contas")
+@CrossOrigin(origins = {"*"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,RequestMethod.PUT})
 public class ContaController {
     @Autowired
     private ContaService contaService;
