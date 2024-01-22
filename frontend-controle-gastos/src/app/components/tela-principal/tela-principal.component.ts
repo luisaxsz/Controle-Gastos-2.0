@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from '../Conta/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-principal',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaPrincipalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthServiceService,
+    private route: Router
+    ) { }
 
   ngOnInit(): void {
+    this.authService.setAutenticado(false)
   }
 
+  fazerLogout(){
+    this.authService.setAutenticado(false);
+    this.route.navigate(['login'])
+  }
 }

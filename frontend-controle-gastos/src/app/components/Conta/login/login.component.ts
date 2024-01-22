@@ -1,39 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContaService } from '../conta.service';
-import { ActivatedRouteSnapshot, CanActivate, Route, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   constructor(
     private service: ContaService,
     private router: Router,
-  ) { }
+    private authService: AuthServiceService
+  ) {}
 
-  mensagemErro: string = ''
+  mensagemErro: string = '';
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  login(form: NgForm){
-    if(form.valid){
-      this.service.fazerLogin(form.value).subscribe(res =>{
-        if(res){
-          this.router.navigate(['/telaPrincipal'])
+  login(form: NgForm) {
+    if (form.valid) {
+      this.service.fazerLogin(form.value).subscribe(
+        (res) => {
+          if (res) {
+            this.authService.setAutenticado(true);
+            this.router.navigate(['telaPrincipal']);
+          }else{
+            this.authService.setAutenticado(false)
+          }
+        },
+        (err) => {
+          this.authService.setAutenticado(false);
+          this.mensagemErro = 'Credencias Inválidas';
         }
-      }, err => {
-        this.mensagemErro = 'Credencias Inválidas'
-      })
+      );
     }
   }
-
-  criarConta(){
-    this.router.navigate(['cadastro'])
+  criarConta() {
+    this.router.navigate(['/cadastro']);
   }
 }
