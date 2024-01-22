@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from '../Conta/auth-service.service';
+
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../Conta/auth-service.service';
 
 @Component({
   selector: 'app-tela-principal',
