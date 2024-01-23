@@ -1,0 +1,8 @@
+header{
+  background-color:rgb(245, 245, 245) ; /* Define a cor de fundo do header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 5); /* Adiciona uma sombra suave */
+}
+.div-header{
+  border-bottom: 1px solid rgba(0, 0, 0, 5);
+}
+

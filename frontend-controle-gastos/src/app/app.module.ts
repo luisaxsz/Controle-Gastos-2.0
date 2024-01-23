@@ -10,10 +10,11 @@ import { MensagensErroComponent } from './components/mensagens-erro/mensagens-er
 import { ConfirmaSenhaDirective } from './directive/confirma-senha.directive';
 import { ContaComponent } from './components/Conta/conta/conta.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TelaPrincipalComponent } from './components/tela-principal/tela-principal.component';
 import { AdicionarTransacaoComponent } from './components/Transacoes/adicionar-transacao/adicionar-transacao.component';
 import { EditarTransacaoComponent } from './components/Transacoes/editar-transacao/editar-transacao.component';
-import { ListarTransacoesComponent } from './components/Trasacoes/listar-transacoes/listar-transacoes.component';
+import { ListarTransacoesComponent } from './components/Transacoes/listar-transacoes/listar-transacoes.component';
+import { HeaderComponent } from './components/header/header.component';
+import { EditarContaComponent } from './components/Conta/editar-conta/editar-conta.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +24,11 @@ import { ListarTransacoesComponent } from './components/Trasacoes/listar-transac
     MensagensErroComponent,
     ConfirmaSenhaDirective,
     ContaComponent,
-    TelaPrincipalComponent,
     AdicionarTransacaoComponent,
     EditarTransacaoComponent,
-    ListarTransacoesComponent
+    ListarTransacoesComponent,
+    HeaderComponent,
+    EditarContaComponent
   ],
   imports: [
     BrowserModule,

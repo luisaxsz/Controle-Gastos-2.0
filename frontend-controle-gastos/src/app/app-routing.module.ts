@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroComponent } from './components/Conta/cadastro/cadastro.component';
 import { LoginComponent } from './components/Conta/login/login.component';
-import { TelaPrincipalComponent } from './components/Transacoes/tela-principal/tela-principal.component';
+import { TelaPrincipalComponent } from './components/Conta/tela-principal/tela-principal.component';
 import { UserGuardGuard } from './components/Conta/user-guard.guard';
+import { EditarContaComponent } from './components/Conta/editar-conta/editar-conta.component';
+import { ContaComponent } from './components/Conta/conta/conta.component';
 
 const routes: Routes = [{
   path:'',
@@ -20,9 +22,16 @@ const routes: Routes = [{
 },
 {
   path: 'telaPrincipal',
-  component: TelaPrincipalComponent,
-  canActivate: [UserGuardGuard]
-}];
+  component: ContaComponent,
+  canActivate: [UserGuardGuard],
+  children:[
+    {
+      path:'contas/:id',
+      component: EditarContaComponent
+    }
+  ]
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
