@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.security.auth.login.CredentialException;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/contas")
@@ -15,15 +17,19 @@ public class ContaController {
     private ContaService contaService;
 
     @GetMapping()
-    public ResponseEntity<?> getAllContas(){
+    public ResponseEntity<List<Conta>> getAllContas(){
         return ResponseEntity.ok(contaService.getContasBd());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getContasById(@PathVariable("id") Integer id){
+    public ResponseEntity<Optional<Conta>> getContasById(@PathVariable("id") Integer id){
         return ResponseEntity.ok(contaService.getContaById(id));
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Optional<Conta>> getContaByEmail(@PathVariable("email") String email){
+        return ResponseEntity.ok(contaService.getContaByEmail(email));
+    }
     @PostMapping()
     public ResponseEntity<?> postConta(@RequestBody Conta conta){
         return ResponseEntity.ok(contaService.criarConta(conta));

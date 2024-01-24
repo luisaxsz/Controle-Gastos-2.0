@@ -16,6 +16,7 @@
         #email="ngModel"
         required
         pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+        [(ngModel)]="contaDTO.email"
       />
       <div *ngIf="(email?.touched && email?.invalid) || email?.dirty">
         <app-mensagens-erro

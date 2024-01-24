@@ -15,7 +15,9 @@ export class ContaService {
   ) { }
 
   API = 'http://localhost:8080/contas'
-  logado: boolean = false
+
+  contaDTO!: ContaDTO;
+
 
   criarConta(conta: Conta){
     return this.http.post<Conta>(this.API,conta);
@@ -31,10 +33,17 @@ export class ContaService {
     return this.http.get<Conta>(url)
   }
 
+  buscarPorEmail(email: string): Observable<Conta>{
+    const url = `${this.API}/email/${email}`
+    return this.http.get<Conta>(url)
+  }
+
   editar(conta: Conta,id:number): Observable<Conta>{
     const url = `${this.API}/${id}`
     return this.http.put<Conta>(url,conta);
   }
 
-
+  setContaDTO(contaDTO: ContaDTO){
+    this.contaDTO = contaDTO;
+  }
 }

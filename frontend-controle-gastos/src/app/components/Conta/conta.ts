@@ -5,5 +5,5 @@ export interface Conta{
   telefone: string,
   email: string,
   senha: string,
-  total: number
+  total?: number
 }

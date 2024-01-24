@@ -33,10 +33,18 @@ public class ContaService {
         }
     }
 
+    public Optional<Conta> getContaByEmail(String email){
+        Optional<Conta> conta = contaRepository.findByEmail(email);
+        if(conta.isPresent()){
+            return conta;
+        }else {
+            throw new EntityNotFoundException("A conta não pertence a nenhum email no bd");
+        }
+    }
+
     public boolean getUserByLogin(ContaDTO loginAuth) throws CredentialException {
         Optional<Conta> contaOptional = contaRepository.findByEmail(loginAuth.getEmail());
         //if (!isValidEmail(loginAuth.getEmail())) throw new IllegalArgumentException("Email Inválido");
-
         if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
             return true;
         } else {

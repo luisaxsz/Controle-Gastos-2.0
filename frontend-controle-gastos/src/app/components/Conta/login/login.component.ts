@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContaService } from '../conta.service';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
+import { ContaDTO } from '../contaDTO';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,11 @@ export class LoginComponent implements OnInit {
 
   mensagemErro: string = '';
 
+  @Input() contaDTO: ContaDTO = {
+    email: '',
+    senha:''
+  };
+
   ngOnInit(): void {}
 
   login(form: NgForm) {
@@ -25,10 +31,11 @@ export class LoginComponent implements OnInit {
       this.service.fazerLogin(form.value).subscribe(
         (res) => {
           if (res) {
+            this.service.setContaDTO(this.contaDTO);
             this.authService.setAutenticado(true);
             this.router.navigate(['telaPrincipal']);
-          }else{
-            this.authService.setAutenticado(false)
+          } else {
+            this.authService.setAutenticado(false);
           }
         },
         (err) => {
