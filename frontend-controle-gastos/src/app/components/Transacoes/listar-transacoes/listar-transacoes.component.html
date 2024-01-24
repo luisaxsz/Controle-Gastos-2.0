@@ -1,1 +1,9 @@
-<p>listar-transacoes works!</p>
+<div class="listar-transacao" *ngIf="listarTransacoes.length > 0; else semTransacoes">
+  <div *ngFor="let transacao of listarTransacoes">
+    <app-trasacoes [transacao]="transacao"></app-trasacoes>
+  </div>
+</div>
+
+<ng-template #semTransacoes>
+  <p>nenhuma transacao</p>
+</ng-template>

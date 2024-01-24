@@ -25,6 +25,7 @@ export class ContaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.navigate(['telaPrincipal/transacoes'])
     this.service
       .buscarPorEmail(this.service.contaDTO.email)
       .subscribe(conta => (this.conta = conta));

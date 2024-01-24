@@ -5,6 +5,7 @@ import { LoginComponent } from './components/Conta/login/login.component';
 import { UserGuardGuard } from './components/Conta/user-guard.guard';
 import { EditarContaComponent } from './components/Conta/editar-conta/editar-conta.component';
 import { ContaComponent } from './components/Conta/conta/conta.component';
+import { ListarTransacoesComponent } from './components/Transacoes/listar-transacoes/listar-transacoes.component';
 
 const routes: Routes = [{
   path:'',
@@ -27,6 +28,10 @@ const routes: Routes = [{
     {
       path:'editarConta/:id',
       component: EditarContaComponent
+    },
+    {
+      path:'transacoes',
+      component:ListarTransacoesComponent
     }
   ]
 }

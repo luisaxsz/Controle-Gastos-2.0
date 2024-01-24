@@ -14,7 +14,7 @@ export class ContaService {
     private http: HttpClient
   ) { }
 
-  API = 'http://localhost:8080/contas'
+  private readonly API = 'http://localhost:8080/contas'
 
   contaDTO!: ContaDTO;
 
