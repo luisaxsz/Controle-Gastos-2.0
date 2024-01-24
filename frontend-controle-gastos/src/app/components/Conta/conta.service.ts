@@ -38,8 +38,8 @@ export class ContaService {
     return this.http.get<Conta>(url)
   }
 
-  editar(conta: Conta,id:number): Observable<Conta>{
-    const url = `${this.API}/${id}`
+  editar(conta: Conta): Observable<Conta>{
+    const url = `${this.API}/${conta.id}`
     return this.http.put<Conta>(url,conta);
   }
 

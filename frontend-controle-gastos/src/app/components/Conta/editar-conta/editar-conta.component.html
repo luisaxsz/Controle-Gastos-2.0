@@ -4,7 +4,7 @@
     class="formulario-editar"
     id="formulario-editar"
     #formEditar="ngForm"
-    (submit)="editarConta()"
+    (submit)="editarConta(formEditar)"
   >
     <div>
       <label for="nome" class="label">Nome:</label>
@@ -16,6 +16,7 @@
         required
         minlength="3"
         #nome="ngModel"
+        [(ngModel)]="conta.nome"
       />
       <div *ngIf="(nome?.touched && nome?.invalid) || nome?.dirty">
         <app-mensagens-erro
@@ -37,6 +38,7 @@
         required
         minlength="3"
         #sobrenome="ngModel"
+        [(ngModel)]="conta.sobrenome"
       />
       <div
         *ngIf="(sobrenome?.touched && sobrenome?.invalid) || sobrenome?.dirty"
@@ -60,6 +62,7 @@
         #telefone="ngModel"
         required
         pattern=""
+        [(ngModel)]="conta.telefone"
       />
       <div *ngIf="(telefone?.touched && telefone?.invalid) || telefone?.dirty">
         <app-mensagens-erro
@@ -81,6 +84,7 @@
         #email="ngModel"
         required
         pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+        [(ngModel)]="conta.email"
       />
       <div *ngIf="(email?.touched && email?.invalid) || email?.dirty">
         <app-mensagens-erro

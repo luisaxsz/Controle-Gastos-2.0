@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContaService } from '../conta.service';
 import { NgForm } from '@angular/forms';
+import { Conta } from '../conta';
 
 @Component({
   selector: 'app-editar-conta',
@@ -16,30 +17,39 @@ export class EditarContaComponent implements OnInit {
   ) {}
 
   @ViewChild('formEditar') meuFormulario!: NgForm;
-  id = this.route.snapshot.paramMap.get('id');
+
+  conta: Conta = {
+    id: 0,
+    nome: '',
+    sobrenome: '',
+    telefone: '',
+    email: '',
+    senha: '',
+    total: 0,
+  };
 
   ngOnInit() {
-    this.contaService.buscarPorId(parseInt(this.id!)).subscribe((resposta) => {
-      this.preencherForm(resposta);
+    const id = this.route.snapshot.paramMap.get('id');
+    this.contaService.buscarPorId(parseInt(id!)).subscribe((conta) => {
+      this.conta = conta;
+      this.preencherForm(conta, this.meuFormulario)
     });
   }
 
-  preencherForm(dados: any) {
-    this.meuFormulario.form.setValue({
-      id: dados.id,
+  preencherForm(dados: any, form: NgForm) {
+    form.form.patchValue({
       nome: dados.nome,
       sobrenome: dados.sobrenome,
       telefone: dados.telefone,
       email: dados.email,
-      senha: dados.senha,
     });
   }
 
-  editarConta() {
-    console.log(this.meuFormulario.value);
-    if (this.meuFormulario.valid) {
+  editarConta(form: NgForm) {
+    if (form.valid) {
+      
       return this.contaService
-        .editar(this.meuFormulario.value, parseInt(this.id!))
+        .editar(this.conta)
         .subscribe(() => this.router.navigate(['telaPrincipal']));
     }
   }

@@ -26,20 +26,18 @@ public class ContaService {
 
     public Optional<Conta> getContaById(Integer id) {
         Optional<Conta> conta = contaRepository.findById(id);
-        if (conta.isPresent()){
+        if (conta.isPresent()) {
             return contaRepository.findById(id);
-        }else {
-            throw new EntityNotFoundException("A conta não foi encontrada");
         }
+        throw new EntityNotFoundException("A conta não foi encontrada");
     }
 
-    public Optional<Conta> getContaByEmail(String email){
+    public Optional<Conta> getContaByEmail(String email) {
         Optional<Conta> conta = contaRepository.findByEmail(email);
-        if(conta.isPresent()){
+        if (conta.isPresent()) {
             return conta;
-        }else {
-            throw new EntityNotFoundException("A conta não pertence a nenhum email no bd");
         }
+        throw new EntityNotFoundException("A conta não pertence a nenhum email no bd");
     }
 
     public boolean getUserByLogin(ContaDTO loginAuth) throws CredentialException {
@@ -47,36 +45,34 @@ public class ContaService {
         //if (!isValidEmail(loginAuth.getEmail())) throw new IllegalArgumentException("Email Inválido");
         if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
             return true;
-        } else {
-            throw new CredentialException("Credenciais Inválidas");
         }
+        throw new CredentialException("Credenciais Inválidas");
     }
 
-    public Conta criarConta(Conta conta){
-        Optional<Conta> emailUser = contaRepository.findByEmail(conta.getEmail());
+    public Conta criarConta(Conta conta) {
         Assert.isNull(conta.getId(), "Não foi possível criar conta");
-        if (!emailUser.isPresent()) {
+        if (!getEmailRepetido(conta)) {
             String senhaCrip = passwordEncoder.encode(conta.getSenha());
             conta.setSenha(senhaCrip);
             Assert.isNull(conta.getTotal(), "Total tem que está em branco");
             conta.setTotal(BigDecimal.ZERO);
             return contaRepository.save(conta);
-        } else {
-            throw new IllegalArgumentException("Conta Existente");
         }
+        throw new IllegalArgumentException("Conta Existente");
     }
 
     public Conta atualizarConta(Conta conta, Integer id) {
         Optional<Conta> optionalConta = getContaById(id);
-        if (optionalConta.isPresent()) {
+        if (optionalConta.isPresent() && !getEmailRepetido(conta)) {
             Conta db = optionalConta.get();
             db.setNome(conta.getNome());
             db.setSobrenome(conta.getSobrenome());
+            db.setTelefone(conta.getTelefone());
+            db.setEmail(conta.getEmail());
             contaRepository.save(db);
             return db;
-        }else {
-            throw  new EntityNotFoundException("Conta não encontrada");
         }
+        throw new EntityNotFoundException("Conta não encontrada");
     }
 
     public Conta saveTotal(Integer id, Transacao transacao) {
@@ -94,33 +90,22 @@ public class ContaService {
 
             conta.setTotal(novoTotal);
             return contaRepository.save(conta);
-        } else {
-            throw new EntityNotFoundException("Conta não encontrada com ID: " + id);
         }
+        throw new EntityNotFoundException("Conta não encontrada com ID: " + id);
     }
 
-    public void delete (Integer id){
-        if(getContaById(id).isPresent()){
+    public void delete(Integer id) {
+        if (getContaById(id).isPresent()) {
             contaRepository.deleteById(id);
-        }else {
-            throw new EntityNotFoundException("Conta de id: " + id +"não encontrada");
         }
+        throw new EntityNotFoundException("Conta de id: " + id + "não encontrada");
     }
 
-   /* public static boolean isValidEmail(String email) {
-        // Verifica se o endereço de e-mail está vazio
-        if (email == null || email.isEmpty()) {
-            return false;
+    public boolean getEmailRepetido(Conta conta) {
+        Optional<Conta> contaEmail = contaRepository.findByEmail(conta.getEmail());
+        if (contaEmail.isPresent()) {
+            return true;
         }
-
-        // Verifica se o endereço de e-mail contém o caractere `@`
-        if (!email.contains("@")) {
-            return false;
-        }
-        // Verifica se o domínio do endereço de e-mail é válido
-        int index = email.lastIndexOf("@");
-        String dominio = email.substring(index + 1);
-        return dominio.matches("[a-zA-Z0-9-]+\\.[a-zA-Z]+");
-    }*/
-
+        return false;
+    }
 }
