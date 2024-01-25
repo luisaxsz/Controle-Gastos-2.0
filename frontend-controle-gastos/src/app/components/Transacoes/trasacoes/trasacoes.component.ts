@@ -22,5 +22,4 @@ export class TrasacoesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

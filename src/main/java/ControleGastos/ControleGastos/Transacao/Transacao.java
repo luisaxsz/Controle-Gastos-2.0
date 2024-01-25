@@ -1,9 +1,7 @@
 package ControleGastos.ControleGastos.Transacao;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import ControleGastos.ControleGastos.Conta.Conta;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +19,9 @@ public class Transacao {
     private TipoTransacao tipo;
     private BigDecimal valor;
     private String descricao;
+    @ManyToOne
+    @JoinColumn(name = "conta_id")
+    private Conta conta;
 
     public enum TipoTransacao {
         GASTO,

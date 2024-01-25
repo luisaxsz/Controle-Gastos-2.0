@@ -1,12 +1,11 @@
 package ControleGastos.ControleGastos.Conta;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import ControleGastos.ControleGastos.Transacao.Transacao;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,4 +19,6 @@ public class Conta {
     private String senha;
     private String email;
     private BigDecimal total;
+    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
+    private List<Transacao> transacoes;
 }
