@@ -12,7 +12,7 @@ export class TrasacoesComponent implements OnInit {
   @Input() transacao: Transacao = {
     id: 0,
     tipo: "",
-    valor: 0,
+    valor: Big(0).toNumber(),
     descricao:""
   }
 

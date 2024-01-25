@@ -9,14 +9,14 @@ import { TransacoesService } from '../transacoes.service';
 })
 export class ListarTransacoesComponent implements OnInit {
 
-  listarTransacoes: Transacao[] = []
+  listaTransacoes: Transacao[] = []
 
   constructor(
     private service: TransacoesService,
   ) { }
 
   ngOnInit(): void {
-    this.service.listarTransacoes().subscribe(listarTransacoes => this.listarTransacoes = listarTransacoes)
+    this.service.listarTransacoes().subscribe(listarTransacoes => this.listaTransacoes = listarTransacoes)
   }
 
 }

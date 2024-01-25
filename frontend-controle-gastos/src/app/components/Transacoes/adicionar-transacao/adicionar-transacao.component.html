@@ -34,7 +34,14 @@
     </div>
     <div>
       <label>Valor:</label>
-      <input type="text" name="valor" id="valor-trasacao" ngModel required  #valor="ngModel"/>
+      <input
+        type="text"
+        name="valor"
+        id="valor-trasacao"
+        ngModel
+        required
+        #valor="ngModel"
+      />
       <div *ngIf="(valor?.touched && valor?.invalid) || valor?.dirty">
         <app-mensagens-erro
           *ngIf="valor?.errors?.['required']"
@@ -44,8 +51,16 @@
     </div>
     <div>
       <label>Descrição:</label>
-      <input type="text" name="descricao" ngModel required #descricao="ngModel"/>
-      <div *ngIf="(descricao?.touched && descricao?.invalid) || descricao?.dirty">
+      <input
+        type="text"
+        name="descricao"
+        ngModel
+        required
+        #descricao="ngModel"
+      />
+      <div
+        *ngIf="(descricao?.touched && descricao?.invalid) || descricao?.dirty"
+      >
         <app-mensagens-erro
           *ngIf="descricao?.errors?.['required']"
           mensagem="descricao é obrigatório."

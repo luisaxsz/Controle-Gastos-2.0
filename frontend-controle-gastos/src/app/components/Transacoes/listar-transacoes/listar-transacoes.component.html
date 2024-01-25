@@ -1,5 +1,5 @@
-<div class="listar-transacao" *ngIf="listarTransacoes.length > 0; else semTransacoes">
-  <div *ngFor="let transacao of listarTransacoes">
+<div class="listar-transacao" *ngIf="listaTransacoes.length > 0; else semTransacoes">
+  <div *ngFor="let transacao of listaTransacoes">
     <app-trasacoes [transacao]="transacao"></app-trasacoes>
   </div>
 </div>

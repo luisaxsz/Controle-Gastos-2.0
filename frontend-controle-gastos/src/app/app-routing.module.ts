@@ -31,6 +31,10 @@ const routes: Routes = [{
       component: EditarContaComponent
     },
     {
+      path: 'transacoes',
+      component: ListarTransacoesComponent
+    },
+    {
       path: 'adicionarTransacao/:id',
       component: AdicionarTransacaoComponent
     }
