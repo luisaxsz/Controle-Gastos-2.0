@@ -6,11 +6,12 @@ import { UserGuardGuard } from './components/Conta/user-guard.guard';
 import { EditarContaComponent } from './components/Conta/editar-conta/editar-conta.component';
 import { ContaComponent } from './components/Conta/conta/conta.component';
 import { ListarTransacoesComponent } from './components/Transacoes/listar-transacoes/listar-transacoes.component';
+import { AdicionarTransacaoComponent } from './components/Transacoes/adicionar-transacao/adicionar-transacao.component';
 
 const routes: Routes = [{
   path:'',
   pathMatch: 'full',
-  redirectTo: 'cadastro'
+  redirectTo: 'login'
 },
 {
   path: 'cadastro',
@@ -30,11 +31,11 @@ const routes: Routes = [{
       component: EditarContaComponent
     },
     {
-      path:'transacoes',
-      component:ListarTransacoesComponent
+      path: 'adicionarTransacao/:id',
+      component: AdicionarTransacaoComponent
     }
   ]
-}
+},
 ];
 
 @NgModule({

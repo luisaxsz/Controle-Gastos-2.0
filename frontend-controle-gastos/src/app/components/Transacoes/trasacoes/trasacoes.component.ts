@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Transacao } from '../transacao';
+import {Big} from 'big.js';
 
 @Component({
   selector: 'app-trasacoes',

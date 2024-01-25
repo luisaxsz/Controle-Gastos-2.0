@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Transacao } from './transacao';
+import { Observable } from 'rxjs';
+import { Conta } from '../Conta/conta';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +17,10 @@ export class TransacoesService {
 
   listarTransacoes(){
     return this.http.get<Transacao[]>(this.API);
+  }
+
+  adicionarTransacao(transacao: Transacao, idConta: number): Observable<Transacao>{
+    const url = `${this.API}/${idConta}`
+    return this.http.post<Transacao>(url, transacao)
   }
 }

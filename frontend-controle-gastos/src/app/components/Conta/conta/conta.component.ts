@@ -39,4 +39,8 @@ export class ContaComponent implements OnInit {
     this.authService.setAutenticado(false);
     this.router.navigate(['login']);
   }
+
+  adicionarTransacao(){
+    this.router.navigate(['telaPrincipal/adicionarTransacao', this.conta.id])
+  }
 }

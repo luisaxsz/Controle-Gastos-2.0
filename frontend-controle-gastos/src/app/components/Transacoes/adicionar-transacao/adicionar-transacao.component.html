@@ -1,1 +1,22 @@
-<p>adicionar-transacao works!</p>
+<section>
+  <form class="formulario-criar-transacao" #formCriarTransacao="ngForm" (submit)="adicionarTransacao(formCriarTransacao)">
+    <div class="radios-transacao">
+      <p>Tipo de transação:</p>
+      <input name="tipo" type="radio" value="GASTO" checked ngModel>
+      <label>Gasto</label>
+      <input name="tipo" type="radio" value="LUCRO">
+      <label>Lucro</label>
+    </div>
+    <div>
+      <label>Valor:</label>
+      <input type="text" name="valor" id="valor-trasacao" ngModel>
+    </div>
+    <div>
+      <label>Descrição:</label>
+      <input type="text" name="descrição" ngModel>
+    </div>
+    <button type="submit">Adicionar</button>
+  </form>
+  <button (click)="cancelar()">Cancelar</button>
+</section>
+
