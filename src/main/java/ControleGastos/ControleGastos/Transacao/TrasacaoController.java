@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 public class TrasacaoController {
     @Autowired
     private TransacaoService transacaoService;
-    @GetMapping("")
-    public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok(transacaoService.getTransacoesBd());
+    @GetMapping("/{idConta}")
+    public ResponseEntity<?> getAll(@PathVariable("idConta") Integer idConta){
+        return ResponseEntity.ok(transacaoService.getTransacoesBd(idConta));
     }
 
     @GetMapping("/tipo/{tipo}")
@@ -21,8 +21,8 @@ public class TrasacaoController {
     }
 
     @PostMapping("/{idConta}")
-    public ResponseEntity<?> postTransação(@PathVariable("idConta") Integer id, @RequestBody Transacao transacao){
-        return ResponseEntity.ok(transacaoService.adicionarTransacao(id,transacao));
+    public ResponseEntity<?> postTransação(@PathVariable("idConta") Integer idConta, @RequestBody Transacao transacao){
+        return ResponseEntity.ok(transacaoService.adicionarTransacao(idConta,transacao));
     }
 
     @PutMapping("/{id}/conta/{idConta}")

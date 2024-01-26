@@ -1,3 +1,5 @@
+import { Transacao } from "../Transacoes/transacao"
+
 export interface Conta{
   id?: number,
   nome: string,
@@ -5,5 +7,6 @@ export interface Conta{
   telefone: string,
   email: string,
   senha: string,
-  total?: number
+  total?: number,
+  transacoes?: Transacao[]
 }

@@ -21,14 +21,17 @@ export class ContaComponent implements OnInit {
     sobrenome: '',
     telefone: '',
     email:'',
-    senha:''
+    senha:'',
+    transacoes: []
   }
 
   ngOnInit(): void {
-    this.router.navigate(['telaPrincipal/transacoes'])
     this.service
-      .buscarPorEmail(this.service.contaDTO.email)
-      .subscribe(conta => (this.conta = conta));
+    .buscarPorEmail(this.service.contaDTO.email)
+    .subscribe(conta => {
+      this.conta = conta
+      this.router.navigate(['telaPrincipal/transacoes/', this.conta.id])
+    });
   }
 
   editarConta(): void{

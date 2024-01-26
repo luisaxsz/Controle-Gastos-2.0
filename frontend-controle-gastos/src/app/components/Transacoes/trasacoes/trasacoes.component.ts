@@ -10,10 +10,17 @@ import {Big} from 'big.js';
 export class TrasacoesComponent implements OnInit {
 
   @Input() transacao: Transacao = {
-    id: 0,
     tipo: "",
     valor: Big(0).toNumber(),
-    descricao:""
+    descricao:"",
+    conta: {
+      nome: '',
+      sobrenome: '',
+      telefone: '',
+      email: '',
+      senha: '',
+      total: Big(0).toNumber()
+    }
   }
 
   @Input() listaTransacoes: Transacao[] = []

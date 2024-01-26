@@ -1,8 +1,10 @@
 package ControleGastos.ControleGastos.Transacao;
 
+import ControleGastos.ControleGastos.Conta.Conta;
 import ControleGastos.ControleGastos.Conta.ContaService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -17,23 +19,32 @@ public class TransacaoService {
     @Autowired
     private ContaService contaService;
 
-    public List<Transacao> getTransacoesBd(){
+    @Query("SELECT * FROM TRANSACAO WHERE transacao.conta_id = conta.id;")
+    public List<Transacao> getTransacoesBd(Integer idConta) {
         return transacaoRepository.findAll();
     }
 
-    public Optional<Transacao> getTransacaoById(Integer id){
+    public Optional<Transacao> getTransacaoById(Integer id) {
         return Optional.ofNullable(transacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Transação não encontrada")));
     }
 
-    public List<Transacao> getTransaçõesByTipo(Transacao.TipoTransacao tipo){
+    public List<Transacao> getTransaçõesByTipo(Transacao.TipoTransacao tipo) {
         return transacaoRepository.getTransacoesByTipo(tipo);
     }
 
-    public Transacao adicionarTransacao(Integer id,Transacao transacao){
+    public Transacao adicionarTransacao(Integer idConta, Transacao transacao) {
         Assert.isNull(transacao.getId(), "Transação não processada");
-        Transacao transacaoAdicionada = transacaoRepository.save(transacao);
-        contaService.saveTotal(id,transacao);
-        return transacaoAdicionada;
+        Optional<Conta> contaOptional = contaService.getContaById(idConta);
+        if (contaOptional.isPresent()) {
+            Conta conta = contaOptional.get();
+            transacao.setConta(conta);
+            //Salva transação
+            Transacao transacaoAdicionada = transacaoRepository.save(transacao);
+            //Atualiza total
+            contaService.saveTotal(idConta, transacao);
+            return transacaoAdicionada;
+        }
+        throw new RuntimeException("Transação não processada");
     }
 
     public Transacao atualizarTransacao(Transacao transacao, Integer id, Integer idConta) {
@@ -44,16 +55,17 @@ public class TransacaoService {
             db.setValor(transacao.getValor());
             db.setTipo(transacao.getTipo());
             transacaoRepository.save(db);
-            contaService.saveTotal(idConta,transacao);
+            contaService.saveTotal(idConta, transacao);
             return db;
-        }else {
-            throw  new EntityNotFoundException("Transação não encontrada");
+        } else {
+            throw new EntityNotFoundException("Transação não encontrada");
         }
     }
-    public void deleteTransacao(Integer id){
-        if(getTransacaoById(id).isPresent()){
+
+    public void deleteTransacao(Integer id) {
+        if (getTransacaoById(id).isPresent()) {
             transacaoRepository.deleteById(id);
-        }else {
+        } else {
             throw new EntityNotFoundException("Transação não encontrada");
         }
     }

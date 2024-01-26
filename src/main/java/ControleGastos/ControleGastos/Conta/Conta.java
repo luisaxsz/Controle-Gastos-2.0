@@ -1,6 +1,8 @@
 package ControleGastos.ControleGastos.Conta;
 
 import ControleGastos.ControleGastos.Transacao.Transacao;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 

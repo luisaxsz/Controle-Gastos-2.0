@@ -31,7 +31,7 @@ const routes: Routes = [{
       component: EditarContaComponent
     },
     {
-      path: 'transacoes',
+      path: 'transacoes/:id',
       component: ListarTransacoesComponent
     },
     {

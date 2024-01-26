@@ -27,7 +27,7 @@ public class ContaService {
     public Optional<Conta> getContaById(Integer id) {
         Optional<Conta> conta = contaRepository.findById(id);
         if (conta.isPresent()) {
-            return contaRepository.findById(id);
+            return conta;
         }
         throw new EntityNotFoundException("A conta não foi encontrada");
     }

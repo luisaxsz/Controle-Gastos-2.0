@@ -15,8 +15,9 @@ export class TransacoesService {
 
   private readonly API = "http://localhost:8080/transacoes"
 
-  listarTransacoes(){
-    return this.http.get<Transacao[]>(this.API);
+  listarTransacoes(idConta: number){
+    const url = `${this.API}/${idConta}`
+    return this.http.get<Transacao[]>(url);
   }
 
   adicionarTransacao(transacao: Transacao, idConta: number): Observable<Transacao>{

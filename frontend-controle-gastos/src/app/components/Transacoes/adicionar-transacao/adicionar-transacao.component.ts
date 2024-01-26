@@ -25,11 +25,11 @@ export class AdicionarTransacaoComponent implements OnInit {
 
   adicionarTransacao(form: NgForm){
     if(form.valid){
-      this.serviceTransacao.adicionarTransacao(form.value, parseInt(this.id!)).subscribe(() => this.router.navigate(['telaPrincipal/transacoes']))
+      this.serviceTransacao.adicionarTransacao(form.value, parseInt(this.id!)).subscribe(() => this.router.navigate(['telaPrincipal/transacoes/', parseInt(this.id!)]))
     }
   }
 
   cancelar(){
-    this.router.navigate(['telaPrincipal/transacoes'])
+    this.router.navigate(['telaPrincipal/transacoes/', parseInt(this.id!)])
   }
 }
