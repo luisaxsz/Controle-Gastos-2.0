@@ -1,32 +1,31 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Transacao } from '../transacao';
-import {Big} from 'big.js';
+import { Big } from 'big.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trasacoes',
   templateUrl: './trasacoes.component.html',
-  styleUrls: ['./trasacoes.component.css']
+  styleUrls: ['./trasacoes.component.css'],
 })
 export class TrasacoesComponent implements OnInit {
-
   @Input() transacao: Transacao = {
-    tipo: "",
+    tipo: '',
     valor: Big(0).toNumber(),
-    descricao:"",
+    descricao: '',
     conta: {
       nome: '',
       sobrenome: '',
       telefone: '',
       email: '',
       senha: '',
-      total: Big(0).toNumber()
-    }
-  }
+      total: Big(0).toNumber(),
+    },
+  };
 
-  @Input() listaTransacoes: Transacao[] = []
+  @Input() listaTransacoes: Transacao[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

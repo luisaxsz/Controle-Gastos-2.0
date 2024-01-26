@@ -7,6 +7,7 @@ import { EditarContaComponent } from './components/Conta/editar-conta/editar-con
 import { ContaComponent } from './components/Conta/conta/conta.component';
 import { ListarTransacoesComponent } from './components/Transacoes/listar-transacoes/listar-transacoes.component';
 import { AdicionarTransacaoComponent } from './components/Transacoes/adicionar-transacao/adicionar-transacao.component';
+import { EditarTransacaoComponent } from './components/Transacoes/editar-transacao/editar-transacao.component';
 
 const routes: Routes = [{
   path:'',
@@ -32,11 +33,17 @@ const routes: Routes = [{
     },
     {
       path: 'transacoes/:id',
-      component: ListarTransacoesComponent
-    },
-    {
-      path: 'adicionarTransacao/:id',
-      component: AdicionarTransacaoComponent
+      component: ListarTransacoesComponent,
+      children:[
+        {
+          path: 'adicionarTransacao/:id',
+          component: AdicionarTransacaoComponent
+        },
+        {
+          path:'editarTransacao/:id',
+          component: EditarTransacaoComponent
+        }
+      ]
     }
   ]
 },

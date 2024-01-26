@@ -1,1 +1,73 @@
-<p>editar-transacao works!</p>
+<section>
+  <form
+    class="formulario-editar-transacao"
+    #formEditarTransacao="ngForm"
+    (submit)="editarTransacao(formEditarTransacao)"
+  >
+    <div class="radios-transacao">
+      <p>Tipo de transação:</p>
+      <div *ngIf="(tipo?.touched && tipo?.invalid) || tipo?.dirty">
+        <app-mensagens-erro
+          *ngIf="tipo?.errors?.['required']"
+          mensagem="tipo é obrigatório."
+        ></app-mensagens-erro>
+      </div>
+      <input
+        name="tipo"
+        type="radio"
+        value="GASTO"
+        checked
+        ngModel
+        required
+        #tipo="ngModel"
+      />
+      <label>Gasto</label>
+      <input
+        name="tipo"
+        type="radio"
+        value="LUCRO"
+        ngModel
+        required
+        #tipo="ngModel"
+      />
+      <label>Lucro</label>
+    </div>
+    <div>
+      <label>Valor:</label>
+      <input
+        type="text"
+        name="valor"
+        id="valor-trasacao"
+        ngModel
+        required
+        #valor="ngModel"
+      />
+      <div *ngIf="(valor?.touched && valor?.invalid) || valor?.dirty">
+        <app-mensagens-erro
+          *ngIf="valor?.errors?.['required']"
+          mensagem="valor é obrigatório."
+        ></app-mensagens-erro>
+      </div>
+    </div>
+    <div>
+      <label>Descrição:</label>
+      <input
+        type="text"
+        name="descricao"
+        ngModel
+        required
+        #descricao="ngModel"
+      />
+      <div
+        *ngIf="(descricao?.touched && descricao?.invalid) || descricao?.dirty"
+      >
+        <app-mensagens-erro
+          *ngIf="descricao?.errors?.['required']"
+          mensagem="descricao é obrigatório."
+        ></app-mensagens-erro>
+      </div>
+    </div>
+    <button type="submit">Adicionar</button>
+  </form>
+  <button (click)="cancelar()">Cancelar</button>
+</section>

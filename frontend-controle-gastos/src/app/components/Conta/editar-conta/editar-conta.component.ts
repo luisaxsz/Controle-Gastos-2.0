@@ -47,14 +47,13 @@ export class EditarContaComponent implements OnInit {
 
   editarConta(form: NgForm) {
     if (form.valid) {
-      
       return this.contaService
         .editar(this.conta)
-        .subscribe(() => this.router.navigate(['telaPrincipal']));
+        .subscribe(() => this.router.navigate(['telaPrincipal/transacoes', this.conta.id]));
     }
   }
 
   cancelar() {
-    this.router.navigate(['telaPrincipal']);
+    this.router.navigate(['telaPrincipal/transacoes', this.conta.id]);
   }
 }

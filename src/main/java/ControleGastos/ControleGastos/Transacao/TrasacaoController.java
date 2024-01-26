@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.*;
 public class TrasacaoController {
     @Autowired
     private TransacaoService transacaoService;
-    @GetMapping("/{idConta}")
+    @GetMapping("allConta/{idConta}")
     public ResponseEntity<?> getAll(@PathVariable("idConta") Integer idConta){
         return ResponseEntity.ok(transacaoService.getTransacoesBd(idConta));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getTransacaoByid(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(transacaoService.getTransacaoById(id));
     }
 
     @GetMapping("/tipo/{tipo}")
