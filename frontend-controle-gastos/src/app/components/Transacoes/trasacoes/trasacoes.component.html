@@ -3,4 +3,5 @@
   <p>Valor: {{ transacao.valor | currency }}</p>
   <p>Descrição: {{ transacao.descricao }}</p>
   <button routerLink="/telaPrincipal/editarTransacao/{{ transacao.id }}">Editar</button>
+  <button routerLink="/telaPrincipal/deletarTransacao/{{ transacao.id }}">Deletar</button>
 </div>

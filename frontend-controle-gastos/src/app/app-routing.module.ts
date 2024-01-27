@@ -8,6 +8,7 @@ import { ContaComponent } from './components/Conta/conta/conta.component';
 import { ListarTransacoesComponent } from './components/Transacoes/listar-transacoes/listar-transacoes.component';
 import { AdicionarTransacaoComponent } from './components/Transacoes/adicionar-transacao/adicionar-transacao.component';
 import { EditarTransacaoComponent } from './components/Transacoes/editar-transacao/editar-transacao.component';
+import { DeletarTransacaoComponent } from './components/Transacoes/deletar-transacao/deletar-transacao.component';
 
 const routes: Routes = [{
   path:'',
@@ -42,6 +43,10 @@ const routes: Routes = [{
     {
       path:'editarTransacao/:id',
       component: EditarTransacaoComponent
+    },
+    {
+      path: 'deletarTransacao/:id',
+      component: DeletarTransacaoComponent
     }
   ]
 },

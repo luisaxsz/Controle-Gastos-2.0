@@ -34,4 +34,9 @@ export class TransacoesService {
     const url = `${this.API}/${idConta}`
     return this.http.post<Transacao>(url, transacao)
   }
+
+  deletarTransacao(id: number): Observable<Transacao>{
+    const url = `${this.API}/${id}`
+    return this.http.delete<Transacao>(url);
+  }
 }
