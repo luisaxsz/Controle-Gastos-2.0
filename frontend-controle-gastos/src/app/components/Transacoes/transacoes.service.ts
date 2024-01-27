@@ -20,13 +20,13 @@ export class TransacoesService {
     return this.http.get<Transacao[]>(url);
   }
 
-  buscarTransacaoPorId(id: number){
+  buscarTransacaoPorId(id: number):Observable<Transacao>{
     const url = `${this.API}/${id}`
     return this.http.get<Transacao>(url);
   }
 
-  editarTransacao(transacao: Transacao): Observable<Transacao>{
-    const url = `${this.API}/${transacao.id}`
+  editarTransacao(transacao: Transacao, idTransacao: number ,idConta: number): Observable<Transacao>{
+    const url = `${this.API}/${idTransacao}/conta/${idConta}`
     return this.http.put<Transacao>(url,transacao);
   }
 

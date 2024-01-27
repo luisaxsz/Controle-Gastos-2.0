@@ -21,6 +21,4 @@ public class Conta {
     private String senha;
     private String email;
     private BigDecimal total;
-    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
-    private List<Transacao> transacoes;
 }

@@ -34,16 +34,14 @@ const routes: Routes = [{
     {
       path: 'transacoes/:id',
       component: ListarTransacoesComponent,
-      children:[
-        {
-          path: 'adicionarTransacao/:id',
-          component: AdicionarTransacaoComponent
-        },
-        {
-          path:'editarTransacao/:id',
-          component: EditarTransacaoComponent
-        }
-      ]
+    },
+    {
+      path: 'adicionarTransacao/:id',
+      component: AdicionarTransacaoComponent
+    },
+    {
+      path:'editarTransacao/:id',
+      component: EditarTransacaoComponent
     }
   ]
 },

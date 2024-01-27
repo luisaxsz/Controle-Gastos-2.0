@@ -103,9 +103,6 @@ public class ContaService {
 
     public boolean getEmailRepetido(Conta conta) {
         Optional<Conta> contaEmail = contaRepository.findByEmail(conta.getEmail());
-        if (contaEmail.isPresent()) {
-            return true;
-        }
-        return false;
+        return contaEmail.isPresent();
     }
 }

@@ -16,6 +16,7 @@ import { ListarTransacoesComponent } from './components/Transacoes/listar-transa
 import { HeaderComponent } from './components/header/header.component';
 import { EditarContaComponent } from './components/Conta/editar-conta/editar-conta.component';
 import { TrasacoesComponent } from './components/Transacoes/trasacoes/trasacoes.component';
+import { DeletarTransacaoComponent } from './components/Transacoes/deletar-transacao/deletar-transacao.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TrasacoesComponent } from './components/Transacoes/trasacoes/trasacoes.
     ListarTransacoesComponent,
     HeaderComponent,
     EditarContaComponent,
-    TrasacoesComponent
+    TrasacoesComponent,
+    DeletarTransacaoComponent
   ],
   imports: [
     BrowserModule,

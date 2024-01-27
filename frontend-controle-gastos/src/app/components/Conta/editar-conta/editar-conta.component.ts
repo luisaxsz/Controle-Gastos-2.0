@@ -28,9 +28,10 @@ export class EditarContaComponent implements OnInit {
     total: 0,
   };
 
+  id = parseInt(this.route.snapshot.paramMap.get('id')!);
+
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.contaService.buscarPorId(parseInt(id!)).subscribe((conta) => {
+    this.contaService.buscarPorId(this.id).subscribe((conta) => {
       this.conta = conta;
       this.preencherForm(conta, this.meuFormulario)
     });
@@ -48,7 +49,7 @@ export class EditarContaComponent implements OnInit {
   editarConta(form: NgForm) {
     if (form.valid) {
       return this.contaService
-        .editar(this.conta)
+        .editar(this.meuFormulario.value, this.id)
         .subscribe(() => this.router.navigate(['telaPrincipal/transacoes', this.conta.id]));
     }
   }

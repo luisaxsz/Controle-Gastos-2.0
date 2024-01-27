@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./trasacoes.component.css'],
 })
 export class TrasacoesComponent implements OnInit {
+  
   @Input() transacao: Transacao = {
     tipo: '',
     valor: Big(0).toNumber(),

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransacoesService } from '../transacoes.service';
@@ -16,6 +16,8 @@ export class EditarTransacaoComponent implements OnInit {
     private router: Router
   ) {}
 
+  @ViewChild('formEditarTransacao') meuFormulario!: NgForm;
+
   transacao: Transacao = {
     tipo: '',
     valor: 0,
@@ -30,18 +32,28 @@ export class EditarTransacaoComponent implements OnInit {
     },
   };
 
-  id = this.route.snapshot.paramMap.get('id');
-
+  id = parseInt(this.route.snapshot.paramMap.get('id')!);
   ngOnInit(): void {
     this.trasacaoService
-      .buscarTransacaoPorId(parseInt(this.id!))
-      .subscribe((transacao) => (this.transacao = transacao));
+      .buscarTransacaoPorId(this.id)
+      .subscribe((transacao) => {
+        this.transacao = transacao
+        this.preencherForm(transacao,this.meuFormulario)
+      });
   }
 
   editarTransacao(form: NgForm) {
     if(form.valid){
-      this.trasacaoService.editarTransacao(form.value).subscribe(() => this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta.id])  )
+      this.trasacaoService.editarTransacao(this.meuFormulario.value,this.id,this.transacao.conta.id!).subscribe(() => this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta.id])  )
     }
+  }
+
+  preencherForm(dados: any, form: NgForm) {
+    form.form.patchValue({
+     tipo: dados.tipo,
+     valor: dados.valor,
+     descricao: dados.descricao
+    });
   }
 
   cancelar() {
