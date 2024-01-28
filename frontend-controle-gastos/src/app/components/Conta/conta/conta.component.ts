@@ -25,6 +25,8 @@ export class ContaComponent implements OnInit {
     transacoes: []
   }
 
+  isAutenticado: boolean = this.authService.isAutenticado;
+
   ngOnInit(): void {
     this.service
     .buscarPorEmail(this.service.contaDTO.email)

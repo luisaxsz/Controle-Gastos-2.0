@@ -9,14 +9,13 @@ import { AuthServiceService } from '../Conta/auth-service.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
+    private authService: AuthServiceService
   ) { }
 
 
   ngOnInit(): void {
   }
 
-
-
-
+  isAutenticado: boolean = this.authService.isAutenticado
 
 }
