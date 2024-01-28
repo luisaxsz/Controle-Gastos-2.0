@@ -7,7 +7,7 @@
 
 # Controle-Gastos-2.0
 <img alt="Static Badge" src="https://img.shields.io/badge/Springboot-BackEnd Finalizado-darkgreen">
-<img alt="Static Badge" src="https://img.shields.io/badge/Angular-FrontEnd em Andamento-darkred">
+<img alt="Static Badge" src="https://img.shields.io/badge/Angular-FrontEnd Finalizado-darkgreen">
 
 Aplicação permite gerenciar gastos e lucros de uma determinada conta. A aplicação permite criar conta de usuario, atualizar a conta deletar e buscar conta por id.Também é possível adicionar,atualizar,consultar e deletar as transações de GASTO e Lucro.Toda vez que uma transação for adicionada ou modificada ao selecionar uma conta o total dessa conta vai ser modificado de acordo com a conta selecionada e escolhida pelo id.
 
@@ -16,11 +16,20 @@ Aplicação permite gerenciar gastos e lucros de uma determinada conta. A aplica
 - Atualizar conta
 - Consultar contas
 - Deletar conta
+- Login de conta
 - Adicionar transação
 - Atualizar transação
 - Consultar transações
 - Deletar transações
 - Total atulizado toda vez em que transação ocorre
+
+## Front-End(Angular)
+A aplicação conecta ao front com o framework angular, você pode alterar atráves de formulários
+os atributos de conta e transacões. Também inclui a api a possibilidade de cadastro e login. A verificação é 
+feita pelo email e a senha é guardada criptografada. Você também pode consultar seus gastos/lucros assim que fizer login,
+a lista de gasto e/ou lucro pode ser visitada apenas pelo responsável da conta. Todos os campos do formulário possuem verificação. O total continua sendo atualizado automaticamente.
+O estilo da aplicação ainda está sendo ajustado e desenvolvido mas as funcionalidades estão todas funcionando.Utilizei do curso de formulários
+orientados a templates da alura para desenvolver essa parte do projeto.
   
 ### Buscar Contas Existentes
 ``GET /contas``
