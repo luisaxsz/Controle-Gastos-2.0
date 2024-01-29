@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ContaService } from '../conta.service';
+import { ContaService } from '../../../services/conta/conta.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Transacao } from '../transacao';
-import { TransacoesService } from '../transacoes.service';
+import { Transacao } from '../../../interfaces/transacao/transacao';
+import { TransacoesService } from '../../../services/transacoes.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,13 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ListarTransacoesComponent implements OnInit {
 
   listaTransacoes: Transacao[] = []
+  id = this.route.snapshot.paramMap.get('id');
 
   constructor(
     private service: TransacoesService,
     private route: ActivatedRoute
   ) { }
 
-  id = this.route.snapshot.paramMap.get('id');
 
   ngOnInit(): void {
     this.service.listarTransacoes(parseInt(this.id!)).subscribe(listarTransacoes => this.listaTransacoes = listarTransacoes)

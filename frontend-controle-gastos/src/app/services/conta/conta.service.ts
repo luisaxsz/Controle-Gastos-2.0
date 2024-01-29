@@ -1,8 +1,7 @@
-import { UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http"
-import { Conta } from './conta';
-import { ContaDTO } from './contaDTO';
+import { HttpClient } from "@angular/common/http"
+import { Conta } from '../../interfaces/conta/conta';
+import { ContaDTO } from '../../interfaces/conta/contaDTO';
 import { Observable } from 'rxjs';
 
 @Injectable({

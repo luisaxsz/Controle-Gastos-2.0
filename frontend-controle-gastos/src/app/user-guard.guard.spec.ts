@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserGuardGuard } from './components/Conta/user-guard.guard';
+import { UserGuardGuard } from './guard/user-guard.guard';
 
 describe('UserGuardGuard', () => {
   let guard: UserGuardGuard;

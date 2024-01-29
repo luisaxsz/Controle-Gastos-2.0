@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Transacao } from '../transacao';
+import { Transacao } from '../../../interfaces/transacoes/transacao';
 import { Big } from 'big.js';
 import { Router } from '@angular/router';
 

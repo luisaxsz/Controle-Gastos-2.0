@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ContaService } from '../conta.service';
+import { ContaService } from '../../../services/conta/conta.service';
 import { NgForm } from '@angular/forms';
-import { Conta } from '../conta';
+import { Conta } from '../../../interfaces/conta/conta';
 
 @Component({
   selector: 'app-editar-conta',
@@ -10,12 +10,6 @@ import { Conta } from '../conta';
   styleUrls: ['./editar-conta.component.css'],
 })
 export class EditarContaComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private contaService: ContaService,
-    private route: ActivatedRoute
-  ) {}
-
   @ViewChild('formEditar') meuFormulario!: NgForm;
 
   conta: Conta = {
@@ -27,13 +21,18 @@ export class EditarContaComponent implements OnInit {
     senha: '',
     total: 0,
   };
+  constructor(
+    private router: Router,
+    private contaService: ContaService,
+    private route: ActivatedRoute
+  ) {}
 
   id = parseInt(this.route.snapshot.paramMap.get('id')!);
 
   ngOnInit() {
     this.contaService.buscarPorId(this.id).subscribe((conta) => {
       this.conta = conta;
-      this.preencherForm(conta, this.meuFormulario)
+      this.preencherForm(conta, this.meuFormulario);
     });
   }
 
@@ -50,7 +49,9 @@ export class EditarContaComponent implements OnInit {
     if (form.valid) {
       return this.contaService
         .editar(this.meuFormulario.value, this.id)
-        .subscribe(() => this.router.navigate(['telaPrincipal/transacoes', this.conta.id]));
+        .subscribe(() =>
+          this.router.navigate(['telaPrincipal/transacoes', this.conta.id])
+        );
     }
   }
 

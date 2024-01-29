@@ -17,9 +17,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { EditarContaComponent } from './components/Conta/editar-conta/editar-conta.component';
 import { TrasacoesComponent } from './components/Transacoes/trasacoes/trasacoes.component';
 import { DeletarTransacaoComponent } from './components/Transacoes/deletar-transacao/deletar-transacao.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import {MatTableModule} from '@angular/material/table';
     HeaderComponent,
     EditarContaComponent,
     TrasacoesComponent,
-    DeletarTransacaoComponent
+    DeletarTransacaoComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +44,9 @@ import {MatTableModule} from '@angular/material/table';
     HttpClientModule,
     MatMenuModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -4,15 +4,15 @@
     <mat-menu #iconConta="matMenu">
       <button (click)="editarConta()" mat-menu-item>Editar conta</button>
       <button (click)="fazerLogout()" mat-menu-item>Sair conta</button>
-      <button (click)="adicionarTransacao()" mat-menu-item>
-        Adicionar Transacao
-      </button>
     </mat-menu>
   </button>
   <div>
     <h2>Total:</h2>
     <p>{{ conta.total?.toFixed(2) | currency }}</p>
   </div>
+  <button (click)="adicionarTransacao()" mat-menu-item>
+    Adicionar Transacao
+  </button>
 </section>
 
 <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Conta } from "../Conta/conta";
+import { Conta } from "../conta/conta";
 
 export interface Transacao{
   id?: number,

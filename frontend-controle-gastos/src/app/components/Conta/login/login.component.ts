@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ContaService } from '../conta.service';
+import { ContaService } from '../../../services/conta/conta.service';
 import { Router } from '@angular/router';
-import { AuthServiceService } from '../auth-service.service';
-import { ContaDTO } from '../contaDTO';
+import { AuthServiceService } from '../../../services/conta/auth-service.service';
+import { ContaDTO } from '../../../interfaces/conta/contaDTO';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +11,18 @@ import { ContaDTO } from '../contaDTO';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  mensagemErro: string = '';
+
+  @Input() contaDTO: ContaDTO = {
+    email: '',
+    senha: '',
+  };
+
   constructor(
     private service: ContaService,
     private router: Router,
     private authService: AuthServiceService
   ) {}
-
-  mensagemErro: string = '';
-
-  @Input() contaDTO: ContaDTO = {
-    email: '',
-    senha:''
-  };
 
   ngOnInit(): void {}
 
