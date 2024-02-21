@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AdicionarTransacaoComponent implements OnInit {
 
   id = this.route.snapshot.paramMap.get('id');
-  
+
   constructor(
     private serviceTransacao: TransacoesService,
     private router: Router,
@@ -31,9 +31,5 @@ export class AdicionarTransacaoComponent implements OnInit {
           ])
         );
     }
-  }
-
-  cancelar() {
-    this.router.navigate(['telaPrincipal/transacoes/', parseInt(this.id!)]);
   }
 }

@@ -1,4 +1,51 @@
-section{
-  background-color: aliceblue;
-  width: 30%;
+.ng-touched.ng-invalid:not(form) {
+  border-color: red;
+  color: red;
+}
+form {
+  background-color: rgb(245, 245, 245);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.16); /* deslocamento lateral , vertical , espalahamento , cor*/
+  height: 23%;
+  border-radius: 10px;
+  width: 22%;
+}
+#valor-transacao{
+width: 30%;
+padding-top: 1em;
+margin-left: 3%;
+border: none;
+border-bottom: 2px solid #ccc;
+font-size: 90%;
+color: #002B5B;
+}
+#valor-transacao:focus{
+outline: none;
+border-bottom-color: #1A5F7A;
+transition: all 0.2s ease;
+}
+#descricao{
+width: 60%;
+padding-top: 1em;
+border: none;
+border-bottom: 2px solid #ccc;
+font-size: 90%;
+}
+#descricao:focus{
+  outline: none;
+  border-bottom-color: #1A5F7A;
+  transition: all 0.2s ease;
+}
+button {
+  background-color: #1A5F7A;
+  border-style: none;
+  border-radius: 3px;
+  color: rgb(245, 245, 245);
+  font-size: 90%;
+  transition: #1A5F7A 0.3s ease;
+  margin-left: 3%;
+  margin-top: 2%;
+  font-family: 'Poppins', sans-serif;
+}
+button:hover {
+  background-color: #159895;
 }

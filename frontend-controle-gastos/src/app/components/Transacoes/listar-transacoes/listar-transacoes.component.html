@@ -1,9 +1,20 @@
- <div
+<div
   class="listar-transacao"
   *ngIf="listaTransacoes.length > 0; else semTransacoes"
 >
+  <table>
+    <tr>
+      <th>Tipo</th>
+      <th>Valor</th>
+      <th>Descrição</th>
+    </tr>
+  </table>
   <div *ngFor="let transacao of listaTransacoes">
-    <app-trasacoes [transacao]="transacao"></app-trasacoes>
+    <table>
+      <tr>
+        <app-trasacoes [transacao]="transacao"></app-trasacoes>
+      </tr>
+    </table>
   </div>
 </div>
 

@@ -1,5 +1,6 @@
 <section>
-  <h1>Login</h1>
+  <h1>Bem Vindo de Volta!</h1>
+  <p>Faça seu Login</p>
   <p> {{ mensagemErro }}</p>
   <form
     #formLogin="ngForm"
@@ -54,7 +55,7 @@
         ></app-mensagens-erro>
       </div>
     </div>
-    <button type="submit">Entrar</button>
+    <button type="submit" id="button-entrar">Entrar</button>
+    <p>Não tem uma conta? <button (click)="criarConta()">Clique aqui</button></p>
   </form>
-  <p>Não tem uma conta? <button (click)="criarConta()">Clique aqui</button></p>
 </section>
