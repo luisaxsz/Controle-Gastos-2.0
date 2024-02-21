@@ -8,10 +8,12 @@
       </mat-menu>
     </button>
   </div>
-  <div id="saldo">
-    <h2>Saldo Atual:</h2>
-    <p id="valorDisponivel">{{ conta.total?.toFixed(2) | currency }}</p>
+  <div class="container">
+    <div id="saldo">
+      <h2>Saldo Atual:</h2>
+      <p id="valorDisponivel">{{ conta.total?.toFixed(2) | currency }}</p>
+    </div>
+    <app-adicionar-transacao></app-adicionar-transacao>
   </div>
-  <app-adicionar-transacao></app-adicionar-transacao>
 </section>
 <router-outlet></router-outlet>

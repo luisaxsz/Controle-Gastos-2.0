@@ -2,12 +2,15 @@
   border-color: red;
   color: red;
 }
+section{
+  margin-top: 1em;
+}
 form {
   background-color: rgb(245, 245, 245);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.16); /* deslocamento lateral , vertical , espalahamento , cor*/
   height: 23%;
   border-radius: 10px;
-  width: 22%;
+  padding: 1em;
 }
 #valor-transacao{
 width: 30%;

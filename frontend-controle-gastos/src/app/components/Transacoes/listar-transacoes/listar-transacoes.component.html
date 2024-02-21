@@ -2,20 +2,34 @@
   class="listar-transacao"
   *ngIf="listaTransacoes.length > 0; else semTransacoes"
 >
-  <table>
-    <tr>
-      <th>Tipo</th>
-      <th>Valor</th>
-      <th>Descrição</th>
-    </tr>
+  <table mat-table [dataSource]="listaTransacoes">
+    <!-- Position Column -->
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef>Descrição</th>
+      <td mat-cell *matCellDef="let transacao">{{ transacao.descricao }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef>Tipo</th>
+      <td mat-cell *matCellDef="let transacao">{{ transacao.tipo }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef>Valor</th>
+      <td mat-cell *matCellDef="let transacao">{{ transacao.valor }}</td>
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef="['descricao', 'tipo', 'valor']"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['descricao', 'tipo', 'valor']"
+    ></tr>
   </table>
-  <div *ngFor="let transacao of listaTransacoes">
-    <table>
-      <tr>
-        <app-trasacoes [transacao]="transacao"></app-trasacoes>
-      </tr>
-    </table>
-  </div>
 </div>
 
 <ng-template #semTransacoes>
