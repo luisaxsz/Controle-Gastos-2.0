@@ -4,6 +4,35 @@
     #formCriarTransacao="ngForm"
     (submit)="adicionarTransacao(formCriarTransacao)"
   >
+  <h3>Adicionar Transação</h3>
+    <div class="radios-transacao">
+      <p>Tipo de transação:</p>
+      <div *ngIf="(tipo?.touched && tipo?.invalid) || tipo?.dirty">
+        <app-mensagens-erro
+          *ngIf="tipo?.errors?.['required']"
+          mensagem="tipo é obrigatório."
+        ></app-mensagens-erro>
+      </div>
+      <input
+        name="tipo"
+        type="radio"
+        value="GASTO"
+        checked
+        ngModel
+        required
+        #tipo="ngModel"
+      />
+      <label>Gasto</label>
+      <input
+        name="tipo"
+        type="radio"
+        value="LUCRO"
+        ngModel
+        required
+        #tipo="ngModel"
+      />
+      <label>Lucro</label>
+    </div>
     <div>
       <label>Valor</label>
       <input
@@ -39,34 +68,6 @@
           mensagem="descricao é obrigatório."
         ></app-mensagens-erro>
       </div>
-    </div>
-    <div class="radios-transacao">
-      <p>Tipo de transação:</p>
-      <div *ngIf="(tipo?.touched && tipo?.invalid) || tipo?.dirty">
-        <app-mensagens-erro
-          *ngIf="tipo?.errors?.['required']"
-          mensagem="tipo é obrigatório."
-        ></app-mensagens-erro>
-      </div>
-      <input
-        name="tipo"
-        type="radio"
-        value="GASTO"
-        checked
-        ngModel
-        required
-        #tipo="ngModel"
-      />
-      <label>Gasto</label>
-      <input
-        name="tipo"
-        type="radio"
-        value="LUCRO"
-        ngModel
-        required
-        #tipo="ngModel"
-      />
-      <label>Lucro</label>
     </div>
     <button type="submit">Adicionar</button>
     <button (click)="cancelar()">Cancelar</button>

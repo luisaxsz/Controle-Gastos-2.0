@@ -1,19 +1,21 @@
 <section>
+  <div class="icon-conta">
+    <button class="user-icon" mat-button [mat-menu-trigger-for]="iconConta">
+      <img src="assets/image/pessoa.png" alt="user" />
+      <mat-menu #iconConta="matMenu">
+        <button (click)="editarConta()" mat-menu-item>Editar conta</button>
+        <button (click)="fazerLogout()" mat-menu-item>Sair conta</button>
+      </mat-menu>
+    </button>
+  </div>
   <div class="container">
     <div id="saldo">
       <h2>Saldo Atual:</h2>
       <p id="valorDisponivel">{{ conta.total?.toFixed(2) | currency }}</p>
     </div>
-    <div class="icon-conta">
-      <button class="user-icon" mat-button [mat-menu-trigger-for]="iconConta">
-        <img src="assets/image/pessoa.png" alt="user" />
-        <mat-menu #iconConta="matMenu">
-          <button (click)="editarConta()" mat-menu-item>Editar conta</button>
-          <button (click)="fazerLogout()" mat-menu-item>Sair conta</button>
-        </mat-menu>
-      </button>
-    </div>
+    <button (click)="adicionarTransacao()" class="adicionar-transacao">
+      Adicionar Transação
+    </button>
   </div>
-  <button (click)="adicionarTransacao()" class="adicionar-transacao">Adicionar Transação</button>
 </section>
 <router-outlet></router-outlet>

@@ -1,3 +1,6 @@
+section{
+  width: 100%;
+}
 .container{
   display: flex;
   flex-direction: row;
@@ -8,23 +11,19 @@
   border-style: none;
   border-radius: 8em;
 }
-.icon-conta{
-  margin-left: 1em;
-  margin-top: 2.5em;
-}
 #saldo{
   background-color: rgb(245, 245, 245);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.16);
   border-radius: 10px;
-  height: 10%;
-  width: 20%;
-  padding: 1%;
   margin-top: 1.3em;
+  padding: 0.4em;
 }
 #valorDisponivel{
   font-family: 'Spline Sans Mono', monospace;
   font-weight: 800;
   font-size: 180%;
+  height: 1em;
+  width: 5em;
   color: #159895;
 }
 .adicionar-transacao{
@@ -35,8 +34,8 @@
     font-size: 1.3em;
     font-weight: 600;
     transition: #1A5F7A 0.3s ease;
-    margin-left: 2em;
     margin-top: 1em;
+    height: 3em;
     font-family: 'Poppins', sans-serif;
 }
 
