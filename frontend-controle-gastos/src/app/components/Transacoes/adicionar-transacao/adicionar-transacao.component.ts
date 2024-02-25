@@ -32,4 +32,8 @@ export class AdicionarTransacaoComponent implements OnInit {
         );
     }
   }
+
+  cancelar(): void{
+    this.router.navigate(['telaPrincipal/transacoes', this.id])
+  }
 }

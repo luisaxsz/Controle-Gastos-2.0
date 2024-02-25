@@ -8,20 +8,38 @@
   border-style: none;
   border-radius: 8em;
 }
-.icon-cont{
+.icon-conta{
   margin-left: 1em;
-  margin-top: 1em;
+  margin-top: 2.5em;
 }
 #saldo{
   background-color: rgb(245, 245, 245);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.16);
   border-radius: 10px;
   height: 10%;
   width: 20%;
   padding: 1%;
+  margin-top: 1.3em;
 }
 #valorDisponivel{
   font-family: 'Spline Sans Mono', monospace;
   font-weight: 800;
   font-size: 180%;
   color: #159895;
+}
+.adicionar-transacao{
+    background-color: #1A5F7A;
+    border-style: none;
+    border-radius: 3px;
+    color: rgb(245, 245, 245);
+    font-size: 1.3em;
+    font-weight: 600;
+    transition: #1A5F7A 0.3s ease;
+    margin-left: 2em;
+    margin-top: 1em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.adicionar-transacao:hover {
+  background-color: #159895;
 }

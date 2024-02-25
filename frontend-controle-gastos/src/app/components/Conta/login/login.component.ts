@@ -3,7 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ContaService } from '../../../services/conta/conta.service';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../services/conta/auth-service.service';
-import { ContaDTO } from '../../../interfaces/conta/contaDTO';
+import { ContaDTO } from 'src/app/interfaces/conta/contaDTO';
+
 
 @Component({
   selector: 'app-login',

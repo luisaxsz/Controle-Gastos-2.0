@@ -1,15 +1,17 @@
+
 .ng-touched.ng-invalid:not(form) {
   border-color: red;
   color: red;
 }
 section{
   margin-top: 1em;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  width: 25%;
 }
 form {
-  background-color: rgb(245, 245, 245);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.16); /* deslocamento lateral , vertical , espalahamento , cor*/
   height: 23%;
-  border-radius: 10px;
   padding: 1em;
 }
 #valor-transacao{
@@ -46,7 +48,7 @@ button {
   font-size: 90%;
   transition: #1A5F7A 0.3s ease;
   margin-left: 3%;
-  margin-top: 2%;
+  margin-top: 1em;
   font-family: 'Poppins', sans-serif;
 }
 button:hover {

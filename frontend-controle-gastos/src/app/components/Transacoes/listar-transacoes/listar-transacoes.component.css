@@ -1,6 +1,23 @@
 .listar-transacao{
   margin-top: 1em;
+  margin-left: 5em;
 }
-table{
-  width: 50%;
+.mat-elevation-z8 th, td{
+  text-align: center;
+  font-weight: 500;
+}
+.mat-column-descricao{
+  border-right: 1px solid #e0e0e0;
+  width: 20%;
+  padding: 1em;
+}
+.mat-column-tipo{
+  border-right: 1px solid #e0e0e0;
+  width: 20%;
+  padding: 1em;
+}
+.mat-column-valor{
+  border-right: 1px solid #e0e0e0;
+  width: 20%;
+  padding: 1em;
 }

@@ -33,7 +33,7 @@ const routes: Routes = [{
     },
     {
       path: 'transacoes/:id',
-      component: ListarTransacoesComponent,
+      component: ListarTransacoesComponent
     },
     {
       path: 'adicionarTransacao/:id',

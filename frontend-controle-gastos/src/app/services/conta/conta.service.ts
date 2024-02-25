@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { Conta } from '../../interfaces/conta/conta';
-import { ContaDTO } from '../../interfaces/conta/contaDTO';
 import { Observable } from 'rxjs';
+import { ContaDTO } from 'src/app/interfaces/conta/contaDTO';
 
 @Injectable({
   providedIn: 'root'

@@ -7,9 +7,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+
 
 @Entity
 @Data
@@ -20,6 +21,8 @@ public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Enumerated(EnumType.STRING)
     private TipoTransacao tipo;
     private BigDecimal valor;
     private String descricao;
