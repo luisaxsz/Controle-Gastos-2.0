@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Transacao } from '../../../interfaces/transacao/transacao';
 import { Big } from 'big.js';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trasacoes',
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./trasacoes.component.css'],
 })
 export class TrasacoesComponent implements OnInit {
-  @Input() transacao: Transacao = {
+  @Input() transacao: Transacao={
     tipo: '',
     valor: Big(0).toNumber(),
     descricao: '',

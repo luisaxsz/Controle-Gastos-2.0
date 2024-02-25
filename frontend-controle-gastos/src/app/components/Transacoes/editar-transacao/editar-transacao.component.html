@@ -4,6 +4,7 @@
     #formEditarTransacao="ngForm"
     (submit)="editarTransacao(formEditarTransacao)"
   >
+  <h3>Editar Transação:</h3>
     <div class="radios-transacao">
       <p>Tipo de transação:</p>
       <div *ngIf="(tipo?.touched && tipo?.invalid) || tipo?.dirty">
@@ -68,7 +69,7 @@
       </div>
     </div>
     <button type="submit">Adicionar</button>
+    <button (click)="cancelar()">Cancelar</button>
   </form>
-  <button (click)="cancelar()">Cancelar</button>
 </section>
 <router-outlet></router-outlet>

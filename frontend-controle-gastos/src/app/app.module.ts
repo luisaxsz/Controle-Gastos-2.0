@@ -20,8 +20,6 @@ import { DeletarTransacaoComponent } from './components/Transacoes/deletar-trans
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
-import { RouterModule } from '@angular/router';
-
 
 @NgModule({
   declarations: [
@@ -46,7 +44,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     MatMenuModule,
     BrowserAnimationsModule,
-    MatTableModule, RouterModule
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

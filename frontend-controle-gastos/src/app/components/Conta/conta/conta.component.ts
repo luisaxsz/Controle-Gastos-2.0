@@ -37,7 +37,7 @@ export class ContaComponent implements OnInit {
   }
 
   editarConta(): void {
-    this.router.navigate(['telaPrincipal/editarConta/', this.conta.id]);
+    this.router.navigate(['/telaPrincipal/editarConta/', this.conta.id]);
   }
 
   fazerLogout(): void {
@@ -46,6 +46,6 @@ export class ContaComponent implements OnInit {
   }
 
   adicionarTransacao() {
-    this.router.navigate(['telaPrincipal/adicionarTransacao', this.conta.id]);
+    this.router.navigate(['/telaPrincipal/adicionarTransacao/', this.conta.id]);
   }
 }
