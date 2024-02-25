@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroComponent } from './components/Conta/cadastro/cadastro.component';
 import { LoginComponent } from './components/Conta/login/login.component';
-//import { UserGuardGuard } from './guard/user-guard.guard';
+import { UserGuardGuard } from './guard/user-guard.guard';
 import { EditarContaComponent } from './components/Conta/editar-conta/editar-conta.component';
 import { ContaComponent } from './components/Conta/conta/conta.component';
 import { ListarTransacoesComponent } from './components/Transacoes/listar-transacoes/listar-transacoes.component';
@@ -26,6 +26,7 @@ const routes: Routes = [{
 {
   path: 'telaPrincipal',
   component: ContaComponent,
+  canActivate:[UserGuardGuard],
   children:[
     {
       path:'editarConta/:id',
