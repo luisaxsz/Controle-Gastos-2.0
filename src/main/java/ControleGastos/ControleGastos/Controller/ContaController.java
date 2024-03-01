@@ -1,6 +1,9 @@
-package ControleGastos.ControleGastos.Conta;
+package ControleGastos.ControleGastos.Controller;
 
-import ControleGastos.ControleGastos.Transacao.Transacao;
+import ControleGastos.ControleGastos.DTO.ContaDTO;
+import ControleGastos.ControleGastos.Service.ContaService;
+import ControleGastos.ControleGastos.Model.Conta;
+import ControleGastos.ControleGastos.Model.Transacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

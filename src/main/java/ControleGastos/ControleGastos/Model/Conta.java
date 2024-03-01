@@ -1,13 +1,9 @@
-package ControleGastos.ControleGastos.Conta;
+package ControleGastos.ControleGastos.Model;
 
-import ControleGastos.ControleGastos.Transacao.Transacao;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Data

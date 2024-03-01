@@ -1,4 +1,4 @@
-package ControleGastos.ControleGastos.Conta;
+package ControleGastos.ControleGastos.DTO;
 
 import lombok.Data;
 

@@ -1,6 +1,9 @@
-package ControleGastos.ControleGastos.Conta;
+package ControleGastos.ControleGastos.Service;
 
-import ControleGastos.ControleGastos.Transacao.Transacao;
+import ControleGastos.ControleGastos.DTO.ContaDTO;
+import ControleGastos.ControleGastos.Model.Conta;
+import ControleGastos.ControleGastos.Model.Transacao;
+import ControleGastos.ControleGastos.Repository.ContaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
