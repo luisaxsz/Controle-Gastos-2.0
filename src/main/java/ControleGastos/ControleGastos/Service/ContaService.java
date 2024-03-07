@@ -1,7 +1,9 @@
 package ControleGastos.ControleGastos.Service;
 
 import ControleGastos.ControleGastos.DTO.ContaDTO;
+import ControleGastos.ControleGastos.DTO.SolicitacaoDeLoginDTO;
 import ControleGastos.ControleGastos.Model.Conta;
+import ControleGastos.ControleGastos.Model.TipoTransacao;
 import ControleGastos.ControleGastos.Model.Transacao;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,8 +25,8 @@ public class ContaService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public List<Conta> getContasBd() {
-        return contaRepository.findAll();
+    public List<ContaDTO> getContasBd() {
+        return contaRepository.findAll().stream().map(ContaDTO:: new).toList();
     }
 
     public Optional<Conta> getContaById(Integer id) {
@@ -43,7 +45,7 @@ public class ContaService {
         throw new EntityNotFoundException("A conta não pertence a nenhum email no bd");
     }
 
-    public boolean getUserByLogin(ContaDTO loginAuth) throws CredentialException {
+    public boolean getUserByLogin(SolicitacaoDeLoginDTO loginAuth) throws CredentialException {
         Optional<Conta> contaOptional = contaRepository.findByEmail(loginAuth.getEmail());
         //if (!isValidEmail(loginAuth.getEmail())) throw new IllegalArgumentException("Email Inválido");
         if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
@@ -85,7 +87,7 @@ public class ContaService {
             Conta conta = optionalConta.get();
             BigDecimal novoTotal;
 
-            if (transacao.getTipo() == Transacao.TipoTransacao.GASTO) {
+            if (transacao.getTipo() == TipoTransacao.GASTO) {
                 novoTotal = conta.getTotal().subtract(transacao.getValor());
             } else {
                 novoTotal = conta.getTotal().add(transacao.getValor());

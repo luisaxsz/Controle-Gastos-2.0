@@ -1,6 +1,7 @@
 package ControleGastos.ControleGastos.Controller;
 
 import ControleGastos.ControleGastos.DTO.ContaDTO;
+import ControleGastos.ControleGastos.DTO.SolicitacaoDeLoginDTO;
 import ControleGastos.ControleGastos.Service.ContaService;
 import ControleGastos.ControleGastos.Model.Conta;
 import ControleGastos.ControleGastos.Model.Transacao;
@@ -20,7 +21,7 @@ public class ContaController {
     private ContaService contaService;
 
     @GetMapping()
-    public ResponseEntity<List<Conta>> getAllContas(){
+    public ResponseEntity<List<ContaDTO>> getAllContas(){
         return ResponseEntity.ok(contaService.getContasBd());
     }
 
@@ -38,7 +39,7 @@ public class ContaController {
         return ResponseEntity.ok(contaService.criarConta(conta));
     }
     @PostMapping("/login")
-    public ResponseEntity<?> userAuth(@RequestBody ContaDTO loginAuth) throws CredentialException {
+    public ResponseEntity<?> userAuth(@RequestBody SolicitacaoDeLoginDTO loginAuth) throws CredentialException {
         return ResponseEntity.ok(contaService.getUserByLogin(loginAuth));
     }
 

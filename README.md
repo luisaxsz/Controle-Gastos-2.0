@@ -8,6 +8,7 @@
 </p>
 
 # Controle-Gastos-2.0
+#### Aplicação está passando por refatoração então pode haver incoerências <br>
 <img alt="Static Badge" src="https://img.shields.io/badge/Springboot-BackEnd Finalizado-darkgreen">
 <img alt="Static Badge" src="https://img.shields.io/badge/Angular-FrontEnd Finalizado-darkgreen">
 

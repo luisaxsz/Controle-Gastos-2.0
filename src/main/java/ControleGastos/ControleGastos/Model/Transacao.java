@@ -29,8 +29,4 @@ public class Transacao {
     @JoinColumn(name = "conta_id")
     private Conta conta;
 
-    public enum TipoTransacao {
-        GASTO,
-        LUCRO
-    }
 }
