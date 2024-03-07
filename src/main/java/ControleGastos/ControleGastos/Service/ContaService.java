@@ -29,10 +29,10 @@ public class ContaService {
         return contaRepository.findAll().stream().map(ContaDTO:: new).toList();
     }
 
-    public Optional<Conta> getContaById(Integer id) {
+    public Optional<ContaDTO> getContaById(Integer id) {
         Optional<Conta> conta = contaRepository.findById(id);
         if (conta.isPresent()) {
-            return conta;
+            return Optional.ofNullable(ContaDTO.create(conta.get()));
         }
         throw new EntityNotFoundException("A conta não foi encontrada");
     }
@@ -67,7 +67,7 @@ public class ContaService {
     }
 
     public Conta atualizarConta(Conta conta, Integer id) {
-        Optional<Conta> optionalConta = getContaById(id);
+        Optional<Conta> optionalConta = contaRepository.findById(id);
         if (optionalConta.isPresent() && !getEmailRepetido(conta)) {
             Conta db = optionalConta.get();
             db.setNome(conta.getNome());
@@ -81,7 +81,7 @@ public class ContaService {
     }
 
     public Conta saveTotal(Integer id, Transacao transacao) {
-        Optional<Conta> optionalConta = getContaById(id);
+        Optional<Conta> optionalConta = contaRepository.findById(id);
 
         if (optionalConta.isPresent()) {
             Conta conta = optionalConta.get();

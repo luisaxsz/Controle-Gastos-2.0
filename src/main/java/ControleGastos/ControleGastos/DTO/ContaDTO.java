@@ -2,6 +2,7 @@ package ControleGastos.ControleGastos.DTO;
 
 import ControleGastos.ControleGastos.Model.Conta;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 
@@ -20,5 +21,9 @@ public class ContaDTO {
         this.total = conta.getTotal();
     }
 
+    public static ContaDTO create(Conta c) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(c, ContaDTO.class);
+    }
 
 }
