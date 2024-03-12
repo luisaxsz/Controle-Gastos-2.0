@@ -1,5 +1,6 @@
 package ControleGastos.ControleGastos.Controller;
 
+import ControleGastos.ControleGastos.Model.TipoTransacao;
 import ControleGastos.ControleGastos.Model.Transacao;
 import ControleGastos.ControleGastos.Service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class TrasacaoController {
     }
 
     @GetMapping("/tipo/{tipo}")
-    public ResponseEntity<?> getByTipo(@PathVariable("tipo") Transacao.TipoTransacao tipo){
+    public ResponseEntity<?> getByTipo(@PathVariable("tipo") TipoTransacao tipo){
         return ResponseEntity.ok(transacaoService.getTransaçõesByTipo(tipo));
     }
 

@@ -6,10 +6,12 @@ import ControleGastos.ControleGastos.Model.Conta;
 import ControleGastos.ControleGastos.Model.TipoTransacao;
 import ControleGastos.ControleGastos.Model.Transacao;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
+import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
+import ControleGastos.ControleGastos.Validacoes.ValidacaoEmail;
+import ControleGastos.ControleGastos.Validacoes.ValidacaoLogin;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -22,11 +24,21 @@ import java.util.Optional;
 public class ContaService {
     @Autowired
     private ContaRepository contaRepository;
+
+    @Autowired
+    private ValidacaoLogin validacaoLogin;
+
+    @Autowired
+    private ValidacaoEmail validacaoEmail;
+
+    @Autowired
+    private ValidacaoContaExistente validacaoContaExistente;
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     public List<ContaDTO> getContasBd() {
-        return contaRepository.findAll().stream().map(ContaDTO:: new).toList();
+        return contaRepository.findAll().stream().map(ContaDTO::new).toList();
     }
 
     public Optional<ContaDTO> getContaById(Integer id) {
@@ -46,29 +58,19 @@ public class ContaService {
     }
 
     public boolean getUserByLogin(SolicitacaoDeLoginDTO loginAuth) throws CredentialException {
-        Optional<Conta> contaOptional = contaRepository.findByEmail(loginAuth.getEmail());
-        //if (!isValidEmail(loginAuth.getEmail())) throw new IllegalArgumentException("Email Inválido");
-        if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
-            return true;
-        }
-        throw new CredentialException("Credenciais Inválidas");
+        return validacaoLogin.validar(loginAuth);
     }
 
-    public Conta criarConta(Conta conta) {
-        Assert.isNull(conta.getId(), "Não foi possível criar conta");
-        if (!getEmailRepetido(conta)) {
-            String senhaCrip = passwordEncoder.encode(conta.getSenha());
-            conta.setSenha(senhaCrip);
-            Assert.isNull(conta.getTotal(), "Total tem que está em branco");
-            conta.setTotal(BigDecimal.ZERO);
-            return contaRepository.save(conta);
+    public void criarConta(Conta conta) {
+        if (!validacaoEmail.validar(conta)) {
+            conta.setSenha(passwordEncoder.encode(conta.getSenha()));
+            contaRepository.save(conta);
         }
-        throw new IllegalArgumentException("Conta Existente");
     }
 
     public Conta atualizarConta(Conta conta, Integer id) {
         Optional<Conta> optionalConta = contaRepository.findById(id);
-        if (optionalConta.isPresent() && !getEmailRepetido(conta)) {
+        if (optionalConta.isPresent() && validacaoEmail.validar(conta)) {
             Conta db = optionalConta.get();
             db.setNome(conta.getNome());
             db.setSobrenome(conta.getSobrenome());
@@ -80,34 +82,21 @@ public class ContaService {
         throw new EntityNotFoundException("Conta não encontrada");
     }
 
-    public Conta saveTotal(Integer id, Transacao transacao) {
-        Optional<Conta> optionalConta = contaRepository.findById(id);
-
-        if (optionalConta.isPresent()) {
-            Conta conta = optionalConta.get();
-            BigDecimal novoTotal;
-
-            if (transacao.getTipo() == TipoTransacao.GASTO) {
-                novoTotal = conta.getTotal().subtract(transacao.getValor());
-            } else {
-                novoTotal = conta.getTotal().add(transacao.getValor());
-            }
-
-            conta.setTotal(novoTotal);
-            return contaRepository.save(conta);
+    public void saveTotal(Integer id, Transacao transacao) {
+        Optional<ContaDTO> optionalConta = getContaById(id);
+        BigDecimal novoTotal;
+        if (transacao.getTipo() == TipoTransacao.GASTO) {
+            novoTotal = optionalConta.get().getTotal().subtract(transacao.getValor());
+        } else {
+            novoTotal = optionalConta.get().getTotal().add(transacao.getValor());
         }
-        throw new EntityNotFoundException("Conta não encontrada com ID: " + id);
+        Conta conta = new Conta(optionalConta.get(), novoTotal);
+        contaRepository.save(conta);
     }
 
     public void delete(Integer id) {
-        if (getContaById(id).isPresent()) {
+        if (validacaoContaExistente.validar(id)) {
             contaRepository.deleteById(id);
         }
-        throw new EntityNotFoundException("Conta de id: " + id + "não encontrada");
-    }
-
-    public boolean getEmailRepetido(Conta conta) {
-        Optional<Conta> contaEmail = contaRepository.findByEmail(conta.getEmail());
-        return contaEmail.isPresent();
     }
 }

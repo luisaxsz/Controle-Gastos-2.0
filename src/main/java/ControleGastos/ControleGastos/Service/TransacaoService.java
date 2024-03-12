@@ -1,7 +1,7 @@
 package ControleGastos.ControleGastos.Service;
 
-import ControleGastos.ControleGastos.Model.Conta;
-import ControleGastos.ControleGastos.Service.ContaService;
+import ControleGastos.ControleGastos.DTO.ContaDTO;
+import ControleGastos.ControleGastos.Model.TipoTransacao;
 import ControleGastos.ControleGastos.Model.Transacao;
 import ControleGastos.ControleGastos.Repository.TransacaoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -30,16 +30,16 @@ public class TransacaoService {
         return Optional.ofNullable(transacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Transação não encontrada")));
     }
 
-    public List<Transacao> getTransaçõesByTipo(Transacao.TipoTransacao tipo) {
+    public List<Transacao> getTransaçõesByTipo(TipoTransacao tipo) {
         return transacaoRepository.getTransacoesByTipo(tipo);
     }
 
     public Transacao adicionarTransacao(Integer idConta, Transacao transacao) {
         Assert.isNull(transacao.getId(), "Transação não processada");
-        Optional<Conta> contaOptional = contaService.getContaById(idConta);
+        Optional<ContaDTO> contaOptional = contaService.getContaById(idConta);
         if (contaOptional.isPresent()) {
-            Conta conta = contaOptional.get();
-            transacao.setConta(conta);
+            //Conta conta = contaOptional.get();
+            //transacao.setConta(conta);
             //Salva transação
             Transacao transacaoAdicionada = transacaoRepository.save(transacao);
             //Atualiza total

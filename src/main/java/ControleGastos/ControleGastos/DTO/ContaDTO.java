@@ -14,6 +14,10 @@ public class ContaDTO {
     private String sobrenome;
     private BigDecimal total;
 
+
+    public ContaDTO() {
+    }
+
     public ContaDTO(Conta conta){
         this.id = conta.getId();
         this.nome = conta.getNome();
