@@ -43,7 +43,7 @@ public class ContaService {
 
     public Optional<ContaDTO> getContaById(Integer id) {
         Optional<Conta> conta = contaRepository.findById(id);
-        if (conta.isPresent()) {
+        if (validacaoContaExistente.validar(id)) {
             return Optional.ofNullable(ContaDTO.create(conta.get()));
         }
         throw new EntityNotFoundException("A conta não foi encontrada");
@@ -62,9 +62,9 @@ public class ContaService {
     }
 
     public void criarConta(Conta conta) {
-        if (!validacaoEmail.validar(conta)) {
-            conta.setSenha(passwordEncoder.encode(conta.getSenha()));
-            contaRepository.save(conta);
+        if (validacaoEmail.validar(conta)) {
+            Conta novaConta = new Conta(conta.getNome(), conta.getSobrenome(), conta.getTelefone(), passwordEncoder.encode(conta.getSenha()), conta.getEmail());
+            contaRepository.save(novaConta);
         }
     }
 

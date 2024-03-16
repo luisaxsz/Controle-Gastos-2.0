@@ -1,6 +1,6 @@
 package ControleGastos.ControleGastos.Model;
 
-import ControleGastos.ControleGastos.Model.Conta;
+import ControleGastos.ControleGastos.DTO.ContaDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -28,5 +28,4 @@ public class Transacao {
     @ManyToOne
     @JoinColumn(name = "conta_id")
     private Conta conta;
-
 }

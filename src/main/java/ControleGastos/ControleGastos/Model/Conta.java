@@ -30,7 +30,7 @@ public class Conta {
         this.telefone = telefone;
         this.senha = senha;
         this.email = email;
-        this.total = BigDecimal.ZERO;
+        this.total = BigDecimal.valueOf(0);
     }
     public Conta(ContaDTO contaDTO, BigDecimal novoTotal) {
         this.id = contaDTO.getId();

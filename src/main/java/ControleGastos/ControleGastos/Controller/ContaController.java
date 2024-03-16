@@ -79,7 +79,7 @@ public class ContaController {
         try {
             contaService.delete(id);
             return ResponseEntity.ok().build();
-        } catch (EntityNotFoundException e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 

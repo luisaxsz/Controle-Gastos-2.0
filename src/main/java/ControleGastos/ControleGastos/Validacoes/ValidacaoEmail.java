@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+
 @Component
 public class ValidacaoEmail {
 
@@ -15,8 +16,8 @@ public class ValidacaoEmail {
     public boolean validar(Conta conta) {
         Optional<Conta> contaEmail = contaRepository.findByEmail(conta.getEmail());
         if (contaEmail.isPresent()) {
-            return true;
+            throw new IllegalArgumentException("Email já existente");
         }
-        throw new IllegalArgumentException("Email já existente");
+        return true;
     }
 }
