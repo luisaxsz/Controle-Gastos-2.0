@@ -8,7 +8,7 @@
 </p>
 
 # Controle-Gastos-2.0
-#### Aplicação está passando por refatoração então pode haver incoerências <br>
+#### Estilização e testes unitários com JUnit e Mockito ainda em andamento.
 <img alt="Static Badge" src="https://img.shields.io/badge/Springboot-BackEnd Finalizado-darkgreen">
 <img alt="Static Badge" src="https://img.shields.io/badge/Angular-FrontEnd Finalizado-darkgreen">
 
@@ -104,5 +104,34 @@ orientados a templates da alura para desenvolver essa parte do projeto.
 ``DELETE /contas/{idConta}``
 ``DELETE /transacoes/{idTransacao}``
 
+## FrontEnd Com Angular
 
+### Login 
+- Ao se cadastrar você pode acessar sua conta atráves da página de login, caso suas credenciais estejam inválidas você não consegue acessar sua conta.
 
+![login.png](..%2F..%2F..%2FPictures%2FScreenshots%2Flogin.png)
+![credenciais invalidas.png](..%2F..%2F..%2FPictures%2FScreenshots%2Fcredenciais%20invalidas.png)
+
+- Caso você entre na sua conta, retorne para página de login e tente acessar sua conta novamente seu acesso será negado e você precisará se autenticar novamente.
+
+![Captura de tela 2024-03-19 153206.png](..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20tela%202024-03-19%20153206.png)
+
+### Tela Principal
+- A tela principal é a da sua conta, você terá acesso ao valor total de sua conta e suas transações. Além disso você pode modificar informações de conta ou transações.
+- Caso você não tenha adicionado nenhuma transação irá aparecer uma mensagem na tela para você.
+
+![Captura de Tela (1).png](..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20Tela%20%281%29.png)
+
+### Editar Conta
+- Você pode alterar as informações da sua conta diretamente da aplicação.
+
+![Captura de tela 2024-03-19 152736.png](..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20tela%202024-03-19%20152736.png)
+![Captura de tela 2024-03-19 152929.png](..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20tela%202024-03-19%20152929.png)
+
+### Editar Transação
+- Você também pode alterar as transações.
+
+![Captura de tela 2024-03-19 152830.png](..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20tela%202024-03-19%20152830.png)
+### Deletar Transação 
+
+![Captura de tela 2024-03-19 153002.png](..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20tela%202024-03-19%20153002.png)

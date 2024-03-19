@@ -26,7 +26,6 @@ public class TransacaoService {
     private ContaRepository contaRepository;
     @Autowired
     private ContaService contaService;
-
     @Autowired
     private ValidacaoContaExistente validacaoContaExistente;
 
