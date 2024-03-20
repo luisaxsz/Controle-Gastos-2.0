@@ -119,6 +119,7 @@ orientados a templates da alura para desenvolver essa parte do projeto.
 - Caso você não tenha adicionado nenhuma transação irá aparecer uma mensagem na tela para você.
   
 ![Captura de Tela (1)](https://github.com/luisaxsz/Controle-Gastos-2.0/assets/101007311/f90ee1fa-2744-421b-9077-7ac246b3ca0c)
+![Captura de tela 2024-03-20 094356](https://github.com/luisaxsz/Controle-Gastos-2.0/assets/101007311/9d971086-dfc5-4c91-b1c7-bfb2432e7f41)
 
 ### Editar Conta
 - Você pode alterar as informações da sua conta diretamente da aplicação.
