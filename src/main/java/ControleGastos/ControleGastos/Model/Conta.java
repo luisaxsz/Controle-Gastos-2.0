@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +21,8 @@ public class Conta {
     private String senha;
     private String email;
     private BigDecimal total;
+    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transacao> transacaoList;
 
     public Conta() {
     }
@@ -36,8 +39,6 @@ public class Conta {
         this.id = contaDTO.getId();
         this.nome = contaDTO.getNome();
         this.sobrenome = contaDTO.getSobrenome();
-        this.telefone = telefone;
-        this.email = email;
         this.total = novoTotal;
     }
 }

@@ -36,6 +36,7 @@ public class ContaService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+    private BigDecimal novoTotal;
 
     public List<ContaDTO> getContasBd() {
         return contaRepository.findAll().stream().map(ContaDTO::new).toList();
@@ -83,14 +84,14 @@ public class ContaService {
     }
 
     public void saveTotal(Integer id, Transacao transacao) {
-        Optional<ContaDTO> optionalConta = getContaById(id);
-        BigDecimal novoTotal;
-        if (transacao.getTipo() == TipoTransacao.GASTO) {
-            novoTotal = optionalConta.get().getTotal().subtract(transacao.getValor());
-        } else {
-            novoTotal = optionalConta.get().getTotal().add(transacao.getValor());
+        Conta conta = contaRepository.getReferenceById(id);
+        BigDecimal novoTotal = BigDecimal.valueOf(0);
+        if (transacao.getTipo() == TipoTransacao.GASTO && validacaoContaExistente.validar(id)) {
+            novoTotal = conta.getTotal().subtract(transacao.getValor());
+        } else if (transacao.getTipo() == TipoTransacao.LUCRO && validacaoContaExistente.validar(id)) {
+            novoTotal = conta.getTotal().add(transacao.getValor());
         }
-        Conta conta = new Conta(optionalConta.get(), novoTotal);
+        conta.setTotal(novoTotal);
         contaRepository.save(conta);
     }
 

@@ -1,6 +1,7 @@
 package ControleGastos.ControleGastos.Service;
 
 import ControleGastos.ControleGastos.DTO.ContaDTO;
+import ControleGastos.ControleGastos.DTO.TransacaoDTO;
 import ControleGastos.ControleGastos.Model.Conta;
 import ControleGastos.ControleGastos.Model.TipoTransacao;
 import ControleGastos.ControleGastos.Model.Transacao;
@@ -33,21 +34,21 @@ public class TransacaoService {
     private ValidacaoDeTransacaoExistente validacaoDeTransacaoExistente;
 
     @Query("SELECT * FROM TRANSACAO WHERE transacao.conta_id = conta.id;")
-    public List<Transacao> getTransacoesBd(Integer idConta) {
-        return transacaoRepository.findAll();
+    public List<TransacaoDTO> getTransacoesBd(Integer idConta) {
+        return transacaoRepository.findAll().stream().map(TransacaoDTO::new).toList();
     }
 
-    public Transacao getTransacaoById(Integer id) {
+    public Optional<TransacaoDTO> getTransacaoById(Integer id) {
+        Optional<Transacao> transacao = transacaoRepository.findById(id);
         if (validacaoDeTransacaoExistente.validar(id)) {
-            Transacao transacao = transacaoRepository.getReferenceById(id);
-            return transacao;
+            return Optional.ofNullable(TransacaoDTO.create(transacao.get()));
         }
-        throw new EntityNotFoundException("Transação não encontrada");
+        throw new EntityNotFoundException("A conta não foi encontrada");
     }
 
 
-    public List<Transacao> getTransaçõesByTipo(TipoTransacao tipo) {
-        return transacaoRepository.getTransacoesByTipo(tipo);
+    public List<TransacaoDTO> getTransaçõesByTipo(TipoTransacao tipo) {
+        return transacaoRepository.getTransacoesByTipo(tipo).stream().map(TransacaoDTO::new).toList();
     }
 
     public void adicionarTransacao(Integer idConta, Transacao transacao) {
@@ -63,7 +64,7 @@ public class TransacaoService {
 
     public Transacao atualizarTransacao(Transacao transacao, Integer id, Integer idConta) {
         if (validacaoDeTransacaoExistente.validar(id)) {
-            Transacao db = getTransacaoById(id);
+            Transacao db = transacaoRepository.getReferenceById(id);
             db.setDescricao(transacao.getDescricao());
             db.setValor(transacao.getValor());
             db.setTipo(transacao.getTipo());
