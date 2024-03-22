@@ -22,6 +22,8 @@ public class ValidacaoLogin {
         Optional<Conta> contaOptional = contaRepository.findByEmail(loginAuth.getEmail());
         if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
             return true;
+        } else if (contaOptional.isEmpty()) {
+            throw new CredentialException("Email não existente");
         }
         throw new CredentialException("Credenciais Inválidas");
     }

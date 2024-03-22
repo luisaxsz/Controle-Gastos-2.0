@@ -18,6 +18,13 @@ public class ContaDTO {
     public ContaDTO() {
     }
 
+    public ContaDTO(Integer id, String nome, String sobrenome, BigDecimal total) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.total = total;
+    }
+
     public ContaDTO(Conta conta){
         this.id = conta.getId();
         this.nome = conta.getNome();

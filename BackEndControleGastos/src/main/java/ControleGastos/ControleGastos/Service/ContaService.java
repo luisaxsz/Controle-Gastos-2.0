@@ -50,14 +50,6 @@ public class ContaService {
         throw new EntityNotFoundException("A conta não foi encontrada");
     }
 
-    public Optional<Conta> getContaByEmail(String email) {
-        Optional<Conta> conta = contaRepository.findByEmail(email);
-        if (conta.isPresent()) {
-            return conta;
-        }
-        throw new EntityNotFoundException("A conta não pertence a nenhum email no bd");
-    }
-
     public boolean getUserByLogin(SolicitacaoDeLoginDTO loginAuth) throws CredentialException {
         return validacaoLogin.validar(loginAuth);
     }

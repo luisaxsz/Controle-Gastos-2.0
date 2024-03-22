@@ -31,20 +31,11 @@ public class ContaController {
         return ResponseEntity.ok(contaService.getContaById(id));
     }
 
-    @GetMapping("/email/{email}")
-    public ResponseEntity<?> getContaByEmail(@PathVariable("email") String email) {
-        try {
-            return ResponseEntity.ok(contaService.getContaByEmail(email));
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
     @PostMapping()
     public ResponseEntity<?> postConta(@RequestBody Conta conta) {
         try {
             contaService.criarConta(conta);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(201).body("Conta Criada Com Sucesso");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -55,7 +46,7 @@ public class ContaController {
         try {
             return ResponseEntity.ok(contaService.getUserByLogin(loginAuth));
         } catch (CredentialException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(401).body(e.getMessage());
         }
     }
 
@@ -63,7 +54,7 @@ public class ContaController {
     public ResponseEntity<?> transacao(@PathVariable("id") Integer id, @RequestBody Transacao transacao) {
         try {
             contaService.saveTotal(id, transacao);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(201).body("Transação Adicionada");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
