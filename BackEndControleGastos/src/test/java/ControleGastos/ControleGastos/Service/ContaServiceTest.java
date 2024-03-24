@@ -4,18 +4,17 @@ import ControleGastos.ControleGastos.DTO.ContaDTO;
 import ControleGastos.ControleGastos.DTO.SolicitacaoDeLoginDTO;
 import ControleGastos.ControleGastos.Model.Conta;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
-import ControleGastos.ControleGastos.Security.SecurityConfig;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoEmail;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoLogin;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.security.auth.login.CredentialException;
@@ -26,6 +25,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class ContaServiceTest {
 
     @InjectMocks
@@ -99,4 +99,38 @@ class ContaServiceTest {
         then(validacaoLogin).should().validar(solicitacaoLoginDto);
     }
 
+    @Test
+    void deveriaCriarConta(){
+        given(validacaoEmail.validar(conta)).willReturn(true);
+        Conta novaConta = contaService.criarConta(conta);
+        then(contaRepository).should().save(novaConta);
+    }
+
+    @Test
+    void nãoDeveriaCriarNovaConta(){
+        given(validacaoEmail.validar(conta)).willThrow(new IllegalArgumentException ("Email já existente"));
+        assertThrows(IllegalArgumentException.class, () -> contaService.criarConta(conta));
+    }
+
+    @Test
+    void deveriaAtualizarConta(){
+        given(contaRepository.findById(conta.getId())).willReturn(Optional.of(conta));
+        given(validacaoEmail.validar(conta)).willReturn(true);
+        Conta contaAtualizada = contaService.atualizarConta(conta, conta.getId());
+        then(contaRepository).should().save(contaAtualizada);
+    }
+
+    @Test
+    void naoDeveriaAtualizarConta(){
+        given(contaRepository.findById(conta.getId())).willReturn(Optional.empty());
+        given(validacaoEmail.validar(conta)).willThrow(new IllegalArgumentException("Email já existente"));
+        assertThrows(EntityNotFoundException.class, () -> contaService.atualizarConta(conta, conta.getId()));
+    }
+
+    @Test
+    void deveriaApagarConta(){
+        given(validacaoContaExistente.validar(conta.getId())).willReturn(true);
+        contaService.delete(conta.getId());
+        then(contaRepository).should().deleteById(conta.getId());
+    }
 }

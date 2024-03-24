@@ -27,6 +27,16 @@ public class Conta {
     public Conta() {
     }
 
+    public Conta(Integer id, String nome, String sobrenome, String telefone, String senha, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.email = email;
+        this.total = BigDecimal.ZERO;
+    }
+
     public Conta(String nome, String sobrenome, String telefone, String senha, String email) {
         this.nome = nome;
         this.sobrenome = sobrenome;

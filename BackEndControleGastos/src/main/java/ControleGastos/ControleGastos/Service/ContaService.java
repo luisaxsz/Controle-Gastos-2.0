@@ -54,11 +54,13 @@ public class ContaService {
         return validacaoLogin.validar(loginAuth);
     }
 
-    public void criarConta(Conta conta) {
+    public Conta criarConta(Conta conta) {
         if (validacaoEmail.validar(conta)) {
             Conta novaConta = new Conta(conta.getNome(), conta.getSobrenome(), conta.getTelefone(), passwordEncoder.encode(conta.getSenha()), conta.getEmail());
             contaRepository.save(novaConta);
+            return novaConta;
         }
+        throw new IllegalArgumentException("Não foi possível criar a conta");
     }
 
     public Conta atualizarConta(Conta conta, Integer id) {
