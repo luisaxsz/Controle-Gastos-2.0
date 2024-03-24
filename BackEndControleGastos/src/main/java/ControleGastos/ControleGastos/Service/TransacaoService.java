@@ -10,6 +10,7 @@ import ControleGastos.ControleGastos.Repository.TransacaoRepository;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoDeTransacaoExistente;
 import jakarta.persistence.EntityNotFoundException;
+import org.modelmapper.internal.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ public class TransacaoService {
         return transacaoRepository.getTransacoesByTipo(tipo).stream().map(TransacaoDTO::new).toList();
     }
 
-    public void adicionarTransacao(Integer idConta, Transacao transacao) {
+    public Transacao adicionarTransacao(Integer idConta, Transacao transacao) {
         if (validacaoContaExistente.validar(idConta)) {
             //Busca informações da conta
             Conta conta = contaRepository.getReferenceById(idConta);
@@ -59,7 +60,9 @@ public class TransacaoService {
             transacaoRepository.save(transacao);
             //Atualiza total
             contaService.saveTotal(idConta, transacao);
+            return transacao;
         }
+        throw new RuntimeException("Transacao não adicionada");
     }
 
     public Transacao atualizarTransacao(Transacao transacao, Integer id, Integer idConta) {

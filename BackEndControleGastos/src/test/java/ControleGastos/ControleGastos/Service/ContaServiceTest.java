@@ -133,4 +133,10 @@ class ContaServiceTest {
         contaService.delete(conta.getId());
         then(contaRepository).should().deleteById(conta.getId());
     }
+
+    @Test
+    void naoDeveriaApagarConta(){
+        given(validacaoContaExistente.validar(conta.getId())).willThrow(new EntityNotFoundException("Conta não existe"));
+        assertThrows(EntityNotFoundException.class, () -> contaService.delete(conta.getId()));
+    }
 }
