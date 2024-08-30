@@ -77,3 +77,4 @@ testem.log
 Thumbs.db
 
 /.mvn/
+/.idea/
