@@ -48,8 +48,6 @@ yarn-error.log
 # IDEs and editors
 .idea/
 /.idea/
-.project
-.classpath
 .c9/
 *.launch
 .settings/
@@ -77,4 +75,3 @@ testem.log
 Thumbs.db
 
 /.mvn/
-/.idea/
