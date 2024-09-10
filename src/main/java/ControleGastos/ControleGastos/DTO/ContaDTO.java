@@ -1,12 +1,13 @@
 package ControleGastos.ControleGastos.DTO;
 
-import ControleGastos.ControleGastos.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Conta;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 
 @Data
+@Deprecated
 public class ContaDTO {
 
     private Integer id;

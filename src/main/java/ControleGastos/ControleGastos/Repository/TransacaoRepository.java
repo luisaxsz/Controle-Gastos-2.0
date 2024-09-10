@@ -1,7 +1,7 @@
 package ControleGastos.ControleGastos.Repository;
 
-import ControleGastos.ControleGastos.Model.TipoTransacao;
-import ControleGastos.ControleGastos.Model.Transacao;
+import ControleGastos.ControleGastos.Domain.Model.TipoTransacao;
+import ControleGastos.ControleGastos.Domain.Model.Transacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package ControleGastos.ControleGastos.Controller;
 
-import ControleGastos.ControleGastos.Model.TipoTransacao;
-import ControleGastos.ControleGastos.Model.Transacao;
+import ControleGastos.ControleGastos.Domain.Model.TipoTransacao;
+import ControleGastos.ControleGastos.Domain.Model.Transacao;
 import ControleGastos.ControleGastos.Service.TransacaoService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

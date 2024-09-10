@@ -1,10 +1,8 @@
-package ControleGastos.ControleGastos.Model;
+package ControleGastos.ControleGastos.Domain.Model;
 
 import ControleGastos.ControleGastos.DTO.ContaDTO;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.math.BigDecimal;
 import java.util.List;

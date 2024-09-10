@@ -1,12 +1,9 @@
 package ControleGastos.ControleGastos.Validacoes;
 
-import ControleGastos.ControleGastos.Model.Conta;
-import ControleGastos.ControleGastos.Model.Transacao;
+import ControleGastos.ControleGastos.Domain.Model.Conta;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
-import ControleGastos.ControleGastos.Repository.TransacaoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;

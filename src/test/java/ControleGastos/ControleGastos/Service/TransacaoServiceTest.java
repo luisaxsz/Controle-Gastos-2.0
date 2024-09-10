@@ -1,8 +1,8 @@
 package ControleGastos.ControleGastos.Service;
 
 import ControleGastos.ControleGastos.DTO.TransacaoDTO;
-import ControleGastos.ControleGastos.Model.Conta;
-import ControleGastos.ControleGastos.Model.Transacao;
+import ControleGastos.ControleGastos.Domain.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Transacao;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import ControleGastos.ControleGastos.Repository.TransacaoRepository;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
@@ -15,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,20 +1,17 @@
 package ControleGastos.ControleGastos.Service;
 
-import ControleGastos.ControleGastos.DTO.ContaDTO;
 import ControleGastos.ControleGastos.DTO.TransacaoDTO;
-import ControleGastos.ControleGastos.Model.Conta;
-import ControleGastos.ControleGastos.Model.TipoTransacao;
-import ControleGastos.ControleGastos.Model.Transacao;
+import ControleGastos.ControleGastos.Domain.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.TipoTransacao;
+import ControleGastos.ControleGastos.Domain.Model.Transacao;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import ControleGastos.ControleGastos.Repository.TransacaoRepository;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoDeTransacaoExistente;
 import jakarta.persistence.EntityNotFoundException;
-import org.modelmapper.internal.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;

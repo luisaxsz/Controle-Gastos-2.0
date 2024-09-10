@@ -1,6 +1,6 @@
 package ControleGastos.ControleGastos.Validacoes;
 
-import ControleGastos.ControleGastos.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Conta;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

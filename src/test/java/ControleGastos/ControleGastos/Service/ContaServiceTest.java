@@ -2,7 +2,7 @@ package ControleGastos.ControleGastos.Service;
 
 import ControleGastos.ControleGastos.DTO.ContaDTO;
 import ControleGastos.ControleGastos.DTO.SolicitacaoDeLoginDTO;
-import ControleGastos.ControleGastos.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Conta;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoEmail;

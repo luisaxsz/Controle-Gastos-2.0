@@ -1,14 +1,14 @@
 package ControleGastos.ControleGastos.DTO;
 
-import ControleGastos.ControleGastos.Model.Conta;
-import ControleGastos.ControleGastos.Model.TipoTransacao;
-import ControleGastos.ControleGastos.Model.Transacao;
+import ControleGastos.ControleGastos.Domain.Model.TipoTransacao;
+import ControleGastos.ControleGastos.Domain.Model.Transacao;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 
 @Data
+@Deprecated
 public class TransacaoDTO {
 
     private Integer id;
