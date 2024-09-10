@@ -19,7 +19,8 @@ services:
         - KEYCLOAK_USER=admin
         - KEYCLOAK_PASSWORD=admin
         - DB_VENDOR=H2
+        - KEYCLOAK_IMPORT=/tmp/jboss/keycloak/realm-config/CONTROLE-GASTOS-realm.json
     volumes:
-      - ./src/main/resources/docker/keycloak:/opt/jboss/keycloak/imports
+      - ./src/main/resources/docker/keycloak/realm-config:/tmp/jboss/keycloak/realm-config
     ports:
       - 8085:8080
