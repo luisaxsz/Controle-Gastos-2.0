@@ -11,7 +11,8 @@ import java.util.List;
 @Data
 public class Conta {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CONTA")
+    @SequenceGenerator(name = "SEQ_CONTA", sequenceName = "SEQ_CONTA", allocationSize = 1)
     private Integer id;
     private String nome;
     private String sobrenome;

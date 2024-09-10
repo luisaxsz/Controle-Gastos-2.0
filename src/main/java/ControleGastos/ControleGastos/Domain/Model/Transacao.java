@@ -17,13 +17,15 @@ import java.math.BigDecimal;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Transacao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TRANSACAO")
+    @SequenceGenerator(name = "SEQ_TRANSACAO", sequenceName = "SEQ_TRANSACAO", allocationSize = 1)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
     private TipoTransacao tipo;
     private BigDecimal valor;
     private String descricao;
+
     /**
      * Relacionamento bidirecional
      * em análise para ser depreciado
