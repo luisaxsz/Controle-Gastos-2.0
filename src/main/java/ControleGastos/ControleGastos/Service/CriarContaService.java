@@ -4,7 +4,6 @@ import ControleGastos.ControleGastos.Domain.Model.Conta;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoEmail;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +17,7 @@ public class CriarContaService {
     if (validacaoEmail.validar(conta)) {
       return contaRepository.save(conta);
     }
-    throw new IllegalArgumentException("Não foi possível criar a conta");
+    throw new IllegalArgumentException("Email inválido");
   }
 
 }

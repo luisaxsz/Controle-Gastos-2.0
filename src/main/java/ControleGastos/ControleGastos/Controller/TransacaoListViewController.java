@@ -1,9 +1,7 @@
 package ControleGastos.ControleGastos.Controller;
 
-import ControleGastos.ControleGastos.Domain.view.ContaListView;
 import ControleGastos.ControleGastos.Domain.view.TransacaoListView;
 import ControleGastos.ControleGastos.Repository.TransacaoListViewRepository;
-import ControleGastos.ControleGastos.Repository.TransacaoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

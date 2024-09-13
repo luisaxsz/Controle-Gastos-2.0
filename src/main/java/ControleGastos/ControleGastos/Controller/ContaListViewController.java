@@ -4,7 +4,6 @@ import ControleGastos.ControleGastos.Domain.view.ContaListView;
 import ControleGastos.ControleGastos.Repository.ContaListViewRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

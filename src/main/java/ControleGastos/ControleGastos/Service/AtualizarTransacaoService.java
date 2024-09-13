@@ -16,6 +16,7 @@ public class AtualizarTransacaoService {
 
   public Transacao atualizarTransacao(Transacao resource, Integer id){
     Transacao transacao = transacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Transação não encontrada"));
+    resource.setId(id);
     mapper.map(resource, transacao);
     transacaoRepository.save(transacao);
     return transacao;

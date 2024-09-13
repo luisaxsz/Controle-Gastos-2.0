@@ -4,7 +4,7 @@ import ControleGastos.ControleGastos.Domain.Model.Conta;
 import ControleGastos.ControleGastos.Domain.Model.TipoTransacao;
 import ControleGastos.ControleGastos.Domain.Model.Transacao;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
-import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +15,13 @@ import java.math.BigDecimal;
 public class SalvarTotalService {
 
   private final ContaRepository contaRepository;
-  private final ValidacaoContaExistente validacaoContaExistente;
 
-  public void salvarTotal(Integer id, Transacao transacao) {
-    Conta conta = contaRepository.getReferenceById(id);
+  public void salvarTotal(Transacao transacao) {
+    Conta conta = contaRepository.findById(transacao.getConta().getId()).orElseThrow(() -> new EntityNotFoundException("Conta não encontrada"));
     BigDecimal novoTotal = BigDecimal.valueOf(0);
-    if (transacao.getTipo() == TipoTransacao.GASTO && validacaoContaExistente.validar(id)) {
+    if (transacao.getTipo() == TipoTransacao.GASTO) {
       novoTotal = conta.getTotal().subtract(transacao.getValor());
-    } else if (transacao.getTipo() == TipoTransacao.LUCRO && validacaoContaExistente.validar(id)) {
+    } else if (transacao.getTipo() == TipoTransacao.LUCRO) {
       novoTotal = conta.getTotal().add(transacao.getValor());
     }
     conta.setTotal(novoTotal);
