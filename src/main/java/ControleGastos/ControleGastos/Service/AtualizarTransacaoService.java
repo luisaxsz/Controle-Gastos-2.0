@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 public class AtualizarTransacaoService {
 
   private final TransacaoRepository transacaoRepository;
+  private final SalvarTotalService salvarTotalService;
   private final ModelMapper mapper;
 
   public Transacao atualizarTransacao(Transacao resource, Integer id){
     Transacao transacao = transacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Transação não encontrada"));
     resource.setId(id);
     mapper.map(resource, transacao);
+    salvarTotalService.salvarTotal(transacao);
     transacaoRepository.save(transacao);
     return transacao;
   }

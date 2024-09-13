@@ -17,7 +17,8 @@ public class SalvarTotalService {
   private final ContaRepository contaRepository;
 
   public void salvarTotal(Transacao transacao) {
-    Conta conta = contaRepository.findById(transacao.getConta().getId()).orElseThrow(() -> new EntityNotFoundException("Conta não encontrada"));
+    Conta conta = contaRepository.findById(transacao.getConta().getId())
+      .orElseThrow(() -> new EntityNotFoundException("Conta não encontrada"));
     BigDecimal novoTotal = BigDecimal.valueOf(0);
     if (transacao.getTipo() == TipoTransacao.GASTO) {
       novoTotal = conta.getTotal().subtract(transacao.getValor());
