@@ -28,10 +28,9 @@ public class Transacao {
   private BigDecimal valor;
   private String descricao;
 
-  @ManyToOne
-  @JoinColumn(name = "conta_id")
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "CONTA_ID", nullable = false)
   @JsonSerialize(using = ContaDatabind.IdSerializer.class)
   @JsonDeserialize(using = ContaDatabind.IdDeserializer.class)
-  @Column(name = "CONTA_ID", nullable = false)
   private Conta conta;
 }

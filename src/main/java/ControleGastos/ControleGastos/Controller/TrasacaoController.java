@@ -31,13 +31,8 @@ public class TrasacaoController {
     return ResponseEntity.ok(transacaoRepository.findById(id).orElseThrow(EntityNotFoundException::new));
   }
 
-//  @GetMapping("/tipo/{tipo}")
-//  public ResponseEntity<?> getByTipo(@PathVariable("tipo") TipoTransacao tipo) {
-//    return ResponseEntity.ok(transacaoRepository.find);
-//  }
-
-  @PostMapping("/{idConta}")
-  public ResponseEntity<?> postTransação(@PathVariable("idConta") Integer idConta, @RequestBody Transacao transacao) {
+  @PostMapping()
+  public ResponseEntity<?> postTransação(@RequestBody Transacao transacao) {
     try {
       adicionarTransacaoService.adicionarTransacao(transacao);
       return ResponseEntity.ok().build();
@@ -67,5 +62,10 @@ public class TrasacaoController {
 //    public ResponseEntity<?> getAll(@PathVariable("idConta") Integer idConta) {
 //        return ResponseEntity.ok(transacaoService.getTransacoesBd(idConta));
 //    }
+
+//  @GetMapping("/tipo/{tipo}")
+//  public ResponseEntity<?> getByTipo(@PathVariable("tipo") TipoTransacao tipo) {
+//    return ResponseEntity.ok(transacaoRepository.find);
+//  }
 
 }

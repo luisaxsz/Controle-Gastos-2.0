@@ -6,11 +6,13 @@ import ControleGastos.ControleGastos.Service.Deprecated.ContaService;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoDeTransacaoExistente;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class AdicionarTransacaoService {
 
   private final TransacaoRepository transacaoRepository;
@@ -21,12 +23,10 @@ public class AdicionarTransacaoService {
 
   public Transacao adicionarTransacao(Transacao transacao) {
     if (validacaoContaExistente.validar(transacao.getConta().getId())) {
-      //Busca informações da conta
-      //Conta conta = contaRepository.getReferenceById(idConta);
-      //transacao.setConta(conta);
       transacaoRepository.save(transacao);
+      log.debug("Conta: {}", transacao.getConta().getId());
       //Atualiza total
-      //contaService.saveTotal(idConta, transacao);
+      contaService.saveTotal(transacao.getConta().getId(), transacao);
       return transacao;
     }
     throw new RuntimeException("Transacao não adicionada");
