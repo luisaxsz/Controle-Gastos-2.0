@@ -1,69 +1,71 @@
 package ControleGastos.ControleGastos.Controller;
 
-import ControleGastos.ControleGastos.Domain.Model.TipoTransacao;
 import ControleGastos.ControleGastos.Domain.Model.Transacao;
-import ControleGastos.ControleGastos.Service.TransacaoService;
+import ControleGastos.ControleGastos.Repository.TransacaoRepository;
+import ControleGastos.ControleGastos.Service.AdicionarTransacaoService;
+import ControleGastos.ControleGastos.Service.AtualizarTransacaoService;
+import ControleGastos.ControleGastos.Service.Deprecated.TransacaoService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/transacoes")
+@RequestMapping("/api/transacoes")
+@AllArgsConstructor
 @CrossOrigin(origins = {"*"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class TrasacaoController {
-    @Autowired
-    private TransacaoService transacaoService;
 
-    @GetMapping("/allConta/{idConta}")
-    public ResponseEntity<?> getAll(@PathVariable("idConta") Integer idConta) {
-        return ResponseEntity.ok(transacaoService.getTransacoesBd(idConta));
-    }
+  private final TransacaoService transacaoService;
+  private final AtualizarTransacaoService atualizarTransacaoService;
+  private final AdicionarTransacaoService adicionarTransacaoService;
+  private final TransacaoRepository transacaoRepository;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getTransacaoByid(@PathVariable("id") Integer id) {
-        try {
-            return ResponseEntity.ok(transacaoService.getTransacaoById(id));
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
+  @GetMapping()
+  public ResponseEntity<?> getAll() {
+    return ResponseEntity.ok(transacaoRepository.findAll());
+  }
 
-    @GetMapping("/tipo/{tipo}")
-    public ResponseEntity<?> getByTipo(@PathVariable("tipo") TipoTransacao tipo) {
-        try {
-            return ResponseEntity.ok(transacaoService.getTransaçõesByTipo(tipo));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+  @GetMapping("/{id}")
+  public ResponseEntity<?> getTransacaoByid(@PathVariable("id") Integer id) {
+    return ResponseEntity.ok(transacaoRepository.findById(id).orElseThrow(EntityNotFoundException::new));
+  }
 
-    @PostMapping("/{idConta}")
-    public ResponseEntity<?> postTransação(@PathVariable("idConta") Integer idConta, @RequestBody Transacao transacao) {
-        try {
-            transacaoService.adicionarTransacao(idConta, transacao);
-            return ResponseEntity.ok().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+//  @GetMapping("/tipo/{tipo}")
+//  public ResponseEntity<?> getByTipo(@PathVariable("tipo") TipoTransacao tipo) {
+//    return ResponseEntity.ok(transacaoRepository.find);
+//  }
 
-    @PutMapping("/{id}/conta/{idConta}")
-    public ResponseEntity<?> putTransação(@PathVariable("id") Integer id, @PathVariable("idConta") Integer idConta, @RequestBody Transacao transacao) {
-        try {
-            return ResponseEntity.ok(transacaoService.atualizarTransacao(transacao, id, idConta));
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+  @PostMapping("/{idConta}")
+  public ResponseEntity<?> postTransação(@PathVariable("idConta") Integer idConta, @RequestBody Transacao transacao) {
+    try {
+      adicionarTransacaoService.adicionarTransacao(transacao);
+      return ResponseEntity.ok().build();
+    } catch (RuntimeException e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTransacao(@PathVariable("id") Integer id) {
-        try {
-            transacaoService.deleteTransacao(id);
-            return ResponseEntity.ok().build();
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+  @PutMapping("/{id}")
+  public ResponseEntity<?> putTransação(@PathVariable("id") Integer id, @RequestBody Transacao transacao) {
+    try {
+      return ResponseEntity.ok(atualizarTransacaoService.atualizarTransacao(transacao, id));
+    } catch (RuntimeException e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<?> deleteTransacao(@PathVariable("id") Integer id) {
+    Transacao transacao = transacaoRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    transacaoRepository.delete(transacao);
+    return ResponseEntity.ok().build();
+  }
+
+
+//    @GetMapping("/allConta/{idConta}")
+//    public ResponseEntity<?> getAll(@PathVariable("idConta") Integer idConta) {
+//        return ResponseEntity.ok(transacaoService.getTransacoesBd(idConta));
+//    }
+
 }

@@ -11,6 +11,7 @@ import javax.security.auth.login.CredentialException;
 import java.util.Optional;
 
 @Component
+@Deprecated
 public class ValidacaoLogin {
 
     @Autowired
@@ -20,11 +21,11 @@ public class ValidacaoLogin {
 
     public boolean validar(SolicitacaoDeLoginDTO loginAuth) throws CredentialException {
         Optional<Conta> contaOptional = contaRepository.findByEmail(loginAuth.getEmail());
-        if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
-            return true;
-        } else if (contaOptional.isEmpty()) {
-            throw new CredentialException("Email não existente");
-        }
+//        if (contaOptional.isPresent() && passwordEncoder.matches(loginAuth.getSenha(), contaOptional.get().getSenha())) {
+//            return true;
+//        } else if (contaOptional.isEmpty()) {
+//            throw new CredentialException("Email não existente");
+//        }
         throw new CredentialException("Credenciais Inválidas");
     }
 }
