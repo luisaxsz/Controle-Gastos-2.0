@@ -1,4 +1,4 @@
-package ControleGastos.ControleGastos.Exceptions;
+package ControleGastos.ControleGastos.Config.Exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
