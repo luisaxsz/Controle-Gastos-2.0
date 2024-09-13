@@ -1,7 +1,10 @@
 package ControleGastos.ControleGastos.Domain.Model;
 
+import ControleGastos.ControleGastos.Domain.Databind.ContaDatabind;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,23 +17,21 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Transacao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TRANSACAO")
-    @SequenceGenerator(name = "SEQ_TRANSACAO", sequenceName = "SEQ_TRANSACAO", allocationSize = 1)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TRANSACAO")
+  @SequenceGenerator(name = "SEQ_TRANSACAO", sequenceName = "SEQ_TRANSACAO", allocationSize = 1)
+  private Integer id;
 
-    @Enumerated(EnumType.STRING)
-    private TipoTransacao tipo;
-    private BigDecimal valor;
-    private String descricao;
+  @Enumerated(EnumType.STRING)
+  private TipoTransacao tipo;
+  private BigDecimal valor;
+  private String descricao;
 
-    /**
-     * Relacionamento bidirecional
-     * em análise para ser depreciado
-     */
-    @ManyToOne
-    @JoinColumn(name = "conta_id")
-    private Conta conta;
+  @ManyToOne
+  @JoinColumn(name = "conta_id")
+  @JsonSerialize(using = ContaDatabind.IdSerializer.class)
+  @JsonDeserialize(using = ContaDatabind.IdDeserializer.class)
+  @Column(name = "CONTA_ID", nullable = false)
+  private Conta conta;
 }

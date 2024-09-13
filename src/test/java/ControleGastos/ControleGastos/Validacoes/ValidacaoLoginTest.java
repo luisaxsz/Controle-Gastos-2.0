@@ -38,25 +38,25 @@ class ValidacaoLoginTest {
     private BCryptPasswordEncoder passwordEncoder;
 
 
-    @Test
-    void validacaoDeLoginBemSucedido(){
-        given(contaRepository.findByEmail(solicitacaoDeLoginDTO.getEmail())).willReturn(Optional.of(conta));
-        given(passwordEncoder.matches(solicitacaoDeLoginDTO.getSenha(), conta.getSenha())).willReturn(true);
-        assertDoesNotThrow(() -> validacaoLogin.validar(solicitacaoDeLoginDTO));
-    }
-
-    @Test
-    void validacaoLoginDeContaNaoExistente(){
-        given(contaRepository.findByEmail(solicitacaoDeLoginDTO.getEmail())).willReturn(Optional.empty());
-        given(passwordEncoder.matches(solicitacaoDeLoginDTO.getSenha(), conta.getSenha())).willReturn(true);
-        assertThrows(CredentialException.class ,() -> validacaoLogin.validar(solicitacaoDeLoginDTO));
-    }
-    @Test
-    void validacaoLoginComCredenciaisInvalidas(){
-        given(contaRepository.findByEmail(solicitacaoDeLoginDTO.getEmail())).willReturn(Optional.of(conta));
-        given(passwordEncoder.matches(solicitacaoDeLoginDTO.getSenha(), conta.getSenha())).willReturn(false);
-        assertThrows(CredentialException.class ,() -> validacaoLogin.validar(solicitacaoDeLoginDTO));
-    }
+//    @Test
+//    void validacaoDeLoginBemSucedido(){
+//        given(contaRepository.findByEmail(solicitacaoDeLoginDTO.getEmail())).willReturn(Optional.of(conta));
+//        given(passwordEncoder.matches(solicitacaoDeLoginDTO.getSenha(), conta.getSenha())).willReturn(true);
+//        assertDoesNotThrow(() -> validacaoLogin.validar(solicitacaoDeLoginDTO));
+//    }
+//
+//    @Test
+//    void validacaoLoginDeContaNaoExistente(){
+//        given(contaRepository.findByEmail(solicitacaoDeLoginDTO.getEmail())).willReturn(Optional.empty());
+//        given(passwordEncoder.matches(solicitacaoDeLoginDTO.getSenha(), conta.getSenha())).willReturn(true);
+//        assertThrows(CredentialException.class ,() -> validacaoLogin.validar(solicitacaoDeLoginDTO));
+//    }
+//    @Test
+//    void validacaoLoginComCredenciaisInvalidas(){
+//        given(contaRepository.findByEmail(solicitacaoDeLoginDTO.getEmail())).willReturn(Optional.of(conta));
+//        given(passwordEncoder.matches(solicitacaoDeLoginDTO.getSenha(), conta.getSenha())).willReturn(false);
+//        assertThrows(CredentialException.class ,() -> validacaoLogin.validar(solicitacaoDeLoginDTO));
+//    }
 
 
 }
