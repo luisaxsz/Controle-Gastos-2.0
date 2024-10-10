@@ -808,7 +808,8 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/controle-gastos/*"
+        "/controle-gastos/*",
+        "http://localhost:4200/*"
       ],
       "webOrigins": [
         "/controle-gastos/*"

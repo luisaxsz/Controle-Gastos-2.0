@@ -24,7 +24,7 @@ export class TransacoesService {
     return this.http.get<Transacao>(url);
   }
 
-  editarTransacao(transacao: Transacao, idTransacao: number ,idConta: number): Observable<Transacao>{
+    editarTransacao(transacao: Transacao, idTransacao: number, idConta: number | undefined): Observable<Transacao>{
     const url = `${this.API}/${idTransacao}/conta/${idConta}`
     return this.http.put<Transacao>(url,transacao);
   }

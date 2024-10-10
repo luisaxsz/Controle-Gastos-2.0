@@ -8,19 +8,20 @@ import { Big } from 'big.js';
   styleUrls: ['./trasacoes.component.css'],
 })
 export class TrasacoesComponent implements OnInit {
-  @Input() transacao: Transacao={
-    tipo: '',
-    valor: Big(0).toNumber(),
-    descricao: '',
-    conta: {
-      nome: '',
-      sobrenome: '',
-      telefone: '',
-      email: '',
-      senha: '',
-      total: Big(0).toNumber(),
-    },
-  };
+
+  // @Input() transacao: Transacao={
+  //   tipo: '',
+  //   valor: Big(0).toNumber(),
+  //   descricao: '',
+  //   conta: {
+  //     nome: '',
+  //     sobrenome: '',
+  //     telefone: '',
+  //     email: '',
+  //     senha: '',
+  //     total: Big(0).toNumber(),
+  //   },
+  // };
 
   @Input() listaTransacoes: Transacao[] = [];
 

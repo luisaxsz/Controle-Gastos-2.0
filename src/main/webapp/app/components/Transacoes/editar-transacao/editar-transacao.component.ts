@@ -16,14 +16,7 @@ export class EditarTransacaoComponent implements OnInit {
     tipo: '',
     valor: 0,
     descricao: '',
-    conta: {
-      nome: '',
-      sobrenome: '',
-      email: '',
-      telefone: '',
-      senha: '',
-      total: 0,
-    },
+    conta: 0
   };
 
   id = parseInt(this.route.snapshot.paramMap.get('id')!);
@@ -49,12 +42,12 @@ export class EditarTransacaoComponent implements OnInit {
         .editarTransacao(
           this.meuFormulario.value,
           this.id,
-          this.transacao.conta.id!
+          this.transacao.conta
         )
         .subscribe(() =>
           this.router.navigate([
             'telaPrincipal/transacoes',
-            this.transacao.conta.id,
+            this.transacao.conta
           ])
         );
     }
@@ -69,6 +62,6 @@ export class EditarTransacaoComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta.id]);
+    this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta]);
   }
 }

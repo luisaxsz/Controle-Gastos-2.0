@@ -22,6 +22,8 @@
     "@angular/router": "^14.2.0",
     "angular-material": "^1.2.5",
     "big.js": "^6.2.1",
+    "keycloak-angular": "^14.4.0",
+    "keycloak-js": "^13.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  keycloak: {
+    config: {
+      url: 'http://localhost:8085/auth',
+      redirectUri: 'http://localhost:4200',
+      realm: 'CONTROLE-GASTOS',
+      clientId: 'CONTROLE-GASTOS',
+    }
+  },
+  initOptions:{
+    onLoad: 'login-required',
+    checkLoginIframe: true,
+    enableLogging: true
+  }
 };
 
 /*

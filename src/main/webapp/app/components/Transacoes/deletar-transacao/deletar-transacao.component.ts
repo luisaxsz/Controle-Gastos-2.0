@@ -20,14 +20,7 @@ export class DeletarTransacaoComponent implements OnInit {
     tipo: '',
     valor: 0,
     descricao: '',
-    conta: {
-      nome: '',
-      sobrenome: '',
-      email: '',
-      telefone: '',
-      senha: '',
-      total: 0,
-    },
+    conta: 0
   };
 
 
@@ -40,11 +33,11 @@ export class DeletarTransacaoComponent implements OnInit {
 
     deletarTransacao(): void{
       if(this.transacao.id){
-        this.transacaoService.deletarTransacao(this.transacao.id).subscribe(() => this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta.id]))
+        this.transacaoService.deletarTransacao(this.transacao.id).subscribe(() => this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta]))
       }
     }
 
     cancelar(): void{
-      this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta.id])
+      this.router.navigate(['telaPrincipal/transacoes', this.transacao.conta])
     }
 }

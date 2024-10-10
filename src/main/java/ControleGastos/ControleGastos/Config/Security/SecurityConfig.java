@@ -18,22 +18,22 @@ public class SecurityConfig {
 
     private String jwtIssuer;
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//      http.authorizeHttpRequests((auth) -> auth
-//        .requestMatchers("/**").permitAll()
-//        .requestMatchers("/actuator/**").permitAll()
-//        .anyRequest().authenticated()
-//      ).oauth2Client(Customizer.withDefaults())
-//        .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
-//      return http.build();
-//    }
-//
-//    @Bean
-//    public JwtDecoder jwtDecoder() {
-//        this.jwtIssuer = System.getProperty("spring.security.oauth2.resourceserver.jwt.issuer-uri");
-//        return JwtDecoders.fromIssuerLocation(jwtIssuer);
-//    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+      http.authorizeHttpRequests((auth) -> auth
+        .requestMatchers("/**").permitAll()
+        .requestMatchers("/actuator/**").permitAll()
+        .anyRequest().authenticated()
+      ).oauth2Client(Customizer.withDefaults())
+        .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+      return http.build();
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        this.jwtIssuer = System.getProperty("spring.security.oauth2.resourceserver.jwt.issuer-uri");
+        return JwtDecoders.fromIssuerLocation(jwtIssuer);
+    }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
