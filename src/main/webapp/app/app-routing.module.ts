@@ -8,7 +8,8 @@ const routes: Routes = [
     path: '',
     component: ListarTransacoesComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {path:'**', redirectTo: ''}
 ];
 
 @NgModule({

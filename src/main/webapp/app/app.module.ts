@@ -16,8 +16,8 @@ import {DeletarTransacaoComponent} from './components/Transacoes/deletar-transac
 import {MatMenuModule} from '@angular/material/menu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
-import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {environment} from "../environments/environment";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 
 export function initializeKeycloak(
   keycloak: KeycloakService

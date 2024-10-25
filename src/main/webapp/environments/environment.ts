@@ -9,7 +9,8 @@ export const environment = {
       url: 'http://localhost:8085/auth',
       redirectUri: 'http://localhost:4200',
       realm: 'CONTROLE-GASTOS',
-      clientId: 'CONTROLE-GASTOS',
+      postLogoutRedirectUri: 'http://localhost:4200',
+      clientId: 'controle-gastos-frontend',
     }
   },
   initOptions:{
