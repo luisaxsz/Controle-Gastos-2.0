@@ -4,20 +4,13 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import {MensagensErroComponent} from './components/mensagens-erro/mensagens-erro.component';
-import {ConfirmaSenhaDirective} from './directive/confirma-senha.directive';
 import {HttpClientModule} from '@angular/common/http';
-import {AdicionarTransacaoComponent} from './components/Transacoes/adicionar-transacao/adicionar-transacao.component';
-import {EditarTransacaoComponent} from './components/Transacoes/editar-transacao/editar-transacao.component';
-import {ListarTransacoesComponent} from './components/Transacoes/listar-transacoes/listar-transacoes.component';
-import {HeaderComponent} from './components/header/header.component';
-import {TrasacoesComponent} from './components/Transacoes/trasacoes/trasacoes.component';
-import {DeletarTransacaoComponent} from './components/Transacoes/deletar-transacao/deletar-transacao.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {environment} from "../environments/environment";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {HeaderComponent} from "./components/header/header.component";
 
 export function initializeKeycloak(
   keycloak: KeycloakService
@@ -35,14 +28,7 @@ export function initializeKeycloak(
 @NgModule({
   declarations: [
     AppComponent,
-    MensagensErroComponent,
-    ConfirmaSenhaDirective,
-    AdicionarTransacaoComponent,
-    EditarTransacaoComponent,
-    ListarTransacoesComponent,
-    HeaderComponent,
-    TrasacoesComponent,
-    DeletarTransacaoComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +38,7 @@ export function initializeKeycloak(
     MatMenuModule,
     BrowserAnimationsModule,
     MatTableModule,
-    KeycloakAngularModule,
+    KeycloakAngularModule
   ],
   providers: [
     {

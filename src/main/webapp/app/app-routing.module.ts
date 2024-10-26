@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ListarTransacoesComponent} from "./components/Transacoes/listar-transacoes/listar-transacoes.component";
 import {AuthGuard} from "./guard/auth.guard";
+import {TransacaoComponent} from "./components/transacao/transacao.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: ListarTransacoesComponent,
-    canActivate: [AuthGuard]
+    component: TransacaoComponent,
+    canActivate: [AuthGuard],
+    children:[{}]
   },
   {path:'**', redirectTo: ''}
 ];

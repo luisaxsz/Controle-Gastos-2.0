@@ -14,10 +14,10 @@ export class TransacoesService {
 
   private readonly API = "http://localhost:8080/transacoes"
 
-  listarTransacoes(idConta: number){
-    const url = `${this.API}/allConta/${idConta}`
-    return this.http.get<Transacao[]>(url);
-  }
+  // listarTransacoes(idConta: number){
+  //   const url = `${this.API}/allConta/${idConta}`
+  //   return this.http.get<Transacao[]>(url);
+  // }
 
   buscarTransacaoPorId(id: number):Observable<Transacao>{
     const url = `${this.API}/${id}`
