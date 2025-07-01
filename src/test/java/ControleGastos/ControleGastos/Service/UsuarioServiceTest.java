@@ -1,7 +1,7 @@
 package ControleGastos.ControleGastos.Service;
 
 import ControleGastos.ControleGastos.DTO.SolicitacaoDeLoginDTO;
-import ControleGastos.ControleGastos.Domain.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Usuario;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import ControleGastos.ControleGastos.Service.Deprecated.ContaService;
 import ControleGastos.ControleGastos.Validacoes.ValidacaoContaExistente;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-class ContaServiceTest {
+class UsuarioServiceTest {
 
     @InjectMocks
     private ContaService contaService;
@@ -25,7 +25,7 @@ class ContaServiceTest {
     @Mock
     private ContaRepository contaRepository;
     @Mock
-    private Conta conta;
+    private Usuario conta;
     @Mock
     private ValidacaoContaExistente validacaoContaExistente;
 

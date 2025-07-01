@@ -1,4 +1,4 @@
-package ControleGastos.ControleGastos.Domain.Model;
+package ControleGastos.ControleGastos.Domain.Enum;
 
 public enum TipoTransacao {
     GASTO,

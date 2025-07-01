@@ -1,6 +1,6 @@
 package ControleGastos.ControleGastos.Validacoes;
 
-import ControleGastos.ControleGastos.Domain.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Usuario;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +23,7 @@ class ValidacaoEmailTest {
     private ContaRepository contaRepository;
 
     @Mock
-    private Conta conta;
+    private Usuario conta;
 
     @Test
     void validarContaComEmailExistente(){

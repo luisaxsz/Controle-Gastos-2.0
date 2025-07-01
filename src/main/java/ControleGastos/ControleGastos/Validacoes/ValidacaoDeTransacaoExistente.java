@@ -13,13 +13,13 @@ import java.util.Optional;
 public class ValidacaoDeTransacaoExistente {
 
 
-    private final TransacaoRepository transacaoRepository;
-
-    public boolean validar(Integer id) {
-        Optional<Transacao> transacao = transacaoRepository.findById(id);
-        if (transacao.isPresent()) {
-            return true;
-        }
-        throw new EntityNotFoundException("Conta não existe");
-    }
+//    private final TransacaoRepository transacaoRepository;
+//
+//    public boolean validar(Integer id) {
+//        Optional<Transacao> transacao = transacaoRepository.findById(id);
+//        if (transacao.isPresent()) {
+//            return true;
+//        }
+//        throw new EntityNotFoundException("Conta não existe");
+//    }
 }

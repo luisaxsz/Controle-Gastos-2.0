@@ -1,6 +1,6 @@
 package ControleGastos.ControleGastos.Validacoes;
 
-import ControleGastos.ControleGastos.Domain.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Usuario;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-class ValidacaoContaExistenteTest {
+class ValidacaoUsuarioExistenteTest {
     @InjectMocks
     private ValidacaoContaExistente validacaoContaExistente;
     @Mock
-    private Conta conta;
+    private Usuario conta;
 
     @Mock
     private ContaRepository contaRepository;

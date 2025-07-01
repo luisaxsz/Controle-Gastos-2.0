@@ -1,7 +1,7 @@
 package ControleGastos.ControleGastos.Service;
 
 import ControleGastos.ControleGastos.DTO.TransacaoDTO;
-import ControleGastos.ControleGastos.Domain.Model.Conta;
+import ControleGastos.ControleGastos.Domain.Model.Usuario;
 import ControleGastos.ControleGastos.Domain.Model.Transacao;
 import ControleGastos.ControleGastos.Repository.ContaRepository;
 import ControleGastos.ControleGastos.Repository.TransacaoRepository;
@@ -35,7 +35,7 @@ class TransacaoServiceTest {
     @Mock
     private TransacaoDTO trasacaoDto;
     @Mock
-    private Conta conta;
+    private Usuario conta;
 
     @Mock
     private ValidacaoDeTransacaoExistente validacaoDeTransacaoExistente;
