@@ -2,13 +2,17 @@
   <img src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white"/>
   <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"/>
   <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
-  <img src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/oracle-%23F80000.svg?style=for-the-badge&logo=oracle&logoColor=white"/>
   <img src="https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white"/>
+  <img src="https://img.shields.io/badge/keycloak-%234D4D4D.svg?style=for-the-badge&logo=keycloak&logoColor=white"/>
   <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"/>
 </p>
 
 # Controle-Gastos-2.0
-#### Estilização e testes unitários com JUnit e Mockito ainda em andamento.
+[![CI](https://github.com/luisaxsz/Controle-Gastos-2.0/actions/workflows/ci.yml/badge.svg)](https://github.com/luisaxsz/Controle-Gastos-2.0/actions/workflows/ci.yml)
+
+**Stack:** Java 17, Spring Boot 3.2, Oracle XE, Keycloak (autenticação OAuth2/JWT), Angular 15 e testes com JUnit e Mockito.
+
 <img alt="Static Badge" src="https://img.shields.io/badge/Springboot-BackEnd Finalizado-darkgreen">
 <img alt="Static Badge" src="https://img.shields.io/badge/Angular-FrontEnd Finalizado-darkgreen">
 
@@ -25,6 +29,23 @@ Aplicação permite gerenciar gastos e lucros de uma determinada conta. A aplica
 - Consultar transações
 - Deletar transações
 - Total atulizado toda vez em que transação ocorre
+
+## Como executar
+Pré-requisitos: Java 17, Maven, Node e Docker.
+
+```bash
+# banco Oracle e Keycloak (porta 8085)
+docker compose up -d
+
+# backend
+mvn spring-boot:run
+
+# frontend (http://localhost:4200)
+npm install
+npx ng serve
+```
+
+Testes: `mvn test`. O pipeline do GitHub Actions executa build e testes a cada push.
 
 # BackEnd SpringBoot
 ### Buscar Contas Existentes
