@@ -9,8 +9,6 @@
 </p>
 
 # Controle-Gastos-2.0
-[![CI](https://github.com/luisaxsz/Controle-Gastos-2.0/actions/workflows/ci.yml/badge.svg)](https://github.com/luisaxsz/Controle-Gastos-2.0/actions/workflows/ci.yml)
-
 **Stack:** Java 17, Spring Boot 3.2, Oracle XE, Keycloak (autenticação OAuth2/JWT), Angular 15 e testes com JUnit e Mockito.
 
 <img alt="Static Badge" src="https://img.shields.io/badge/Springboot-BackEnd Finalizado-darkgreen">
@@ -45,7 +43,7 @@ npm install
 npx ng serve
 ```
 
-Testes: `mvn test`. O pipeline do GitHub Actions executa build e testes a cada push.
+Testes: `mvn test`.
 
 # BackEnd SpringBoot
 ### Buscar Contas Existentes
